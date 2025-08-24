@@ -17,7 +17,7 @@ OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 HEADERS		=	$(wildcard $(INC_DIR)/*.h)
 
-MLX_PATH	=	mlx
+MLX_PATH	=	minilibx
 MLX_LIB		=	$(MLX_PATH)/libmlx.a
 INCLUDES	+=	-I$(MLX_PATH)
 MLX_FLAGS	=	-L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
