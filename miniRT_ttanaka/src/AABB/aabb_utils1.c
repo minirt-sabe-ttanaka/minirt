@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 02:25:41 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 03:07:48 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/22 16:19:05 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ double	calc_surface_area_of_bbox(const t_aabb *bbox)
 	double edge_len[3];
 	int axis;
 
-	axis = 1;
+	axis = 0;
 	while (axis < 3)
 	{
 		edge_len[axis] = bbox->max.v[axis] - bbox->min.v[axis];
