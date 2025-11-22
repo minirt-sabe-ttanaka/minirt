@@ -17,7 +17,7 @@ t_bvh_traversal	init_traversal_info(const void *object, const t_ray *r,
 	info.closest_so_far = t_max;
 	axis = -1;
 	while (++axis < 3)
-		info.dir_is_neg[axis] = r->dir.v[axis];
+		info.dir_is_neg[axis] = (r->dir.v[axis] < 0.0);
 	info.hit = false;
 	info.r = r;
 	info.rec = rec;

@@ -73,9 +73,9 @@ static double	calc_min_cost_in_given_axis(t_bucket *buckets,
 
 static int	min_idx_of_db_arr(double *arr, int size)
 {
-	int	i;
-	int	res;
-	int	cur_min;
+	int		i;
+	int		res;
+	double	cur_min;
 
 	res = 0;
 	cur_min = arr[0];
