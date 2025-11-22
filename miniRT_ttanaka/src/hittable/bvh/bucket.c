@@ -71,6 +71,7 @@ t_aabb	merge_bbox_in_given_range(t_bvh_build_info *info_lst, int start,
 	int		i;
 	int		axis;
 
+	init_aabb(&res);
 	i = start;
 	while (i < end)
 	{
