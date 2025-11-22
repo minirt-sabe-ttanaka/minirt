@@ -29,11 +29,13 @@ t_bvh_traversal	init_traversal_info(const void *object, const t_ray *r,
 void	hit_leaf_objects(t_bvh_traversal *info, const t_linear_bvh_node *node)
 {
 	int				i;
+	int 			end_idx;
 	t_hittable		*hittable;
 	t_hit_record	tmp_rec;
 
 	i = node->hittale_idx;
-	while (i < node->n_hittables)
+	end_idx = node->hittale_idx + node->n_hittables;
+	while (i < end_idx)
 	{
 		hittable = &(info->bvh->objects->objects[i]);
 		if (hittable->vtable->hit(hittable, info->r, info->t_min,
