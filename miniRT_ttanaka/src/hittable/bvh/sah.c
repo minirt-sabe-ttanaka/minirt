@@ -116,6 +116,7 @@ int	split_based_on_sah(t_bvh_build_node *node, t_bvh_build_info *info_lst,
 		split_bucket_ids[axis] = pred.split_bucket_id;
 	}
 	node->split_axis = min_idx_of_db_arr(costs, 3);
+	pred.axis = node->split_axis;
 	pred.split_bucket_id = split_bucket_ids[node->split_axis];
 	if (pred.split_bucket_id == -1)
 		return (left);

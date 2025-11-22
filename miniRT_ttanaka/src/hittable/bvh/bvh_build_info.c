@@ -14,6 +14,7 @@ t_aabb	calc_centroid_bbox_in_given_range(t_bvh_build_info *info_lst, int left,
 	int		i;
 	int		axis;
 
+	init_aabb(&res);
 	i = left;
 	while (i < right)
 	{
