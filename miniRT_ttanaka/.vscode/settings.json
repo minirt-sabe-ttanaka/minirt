@@ -1,6 +1,23 @@
 {
     "files.associations": {
         "*.py": "python",
-        "minirt.h": "c"
+        "minirt.h": "c",
+        "aabb.h": "c",
+        "utils.h": "c",
+        "ft_math.h": "c",
+        "libft.h": "c",
+        "vector.h": "c",
+        "float.h": "c",
+        "hittable.h": "c",
+        "unordered_map": "c",
+        "chrono": "c",
+        "parse.h": "c",
+        "stdlib.h": "c",
+        "util.h": "c",
+        "color.h": "c",
+        "shape.h": "c",
+        "hittable_lst.h": "c",
+        "bvh.h": "c",
+        "stdio.h": "c"
     }
 }

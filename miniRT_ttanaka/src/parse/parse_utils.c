@@ -1,0 +1,68 @@
+#include "parse.h"
+
+static bool	parse_line_sections(char **splitted_data, t_scene *scene);
+static bool	is_space_line(char *s);
+static bool	parse_single_line(char *line, t_scene *scene);
+bool		read_lines_loop(int fd, t_scene *scene);
+
+static bool	parse_line_sections(char **splitted_data, t_scene *scene)
+{
+	if (!splitted_data[0])
+		return (true);
+	if (ft_strcmp(splitted_data[0], "A") == 0)
+		return (set_ambient(splitted_data, scene));
+	if (ft_strcmp(splitted_data[0], "C") == 0)
+		return (set_camera(splitted_data, scene));
+	if (ft_strcmp(splitted_data[0], "L") == 0)
+		return (set_light(splitted_data, scene));
+	if (ft_strcmp(splitted_data[0], "sp") == 0)
+		return (set_sphere(splitted_data, scene));
+	if (ft_strcmp(splitted_data[0], "pl") == 0)
+		return (set_plane(splitted_data, scene));
+	if (ft_strcmp(splitted_data[0], "cy") == 0)
+		return (set_cylinder(splitted_data, scene));
+	return (false);
+}
+
+static bool	is_space_line(char *s)
+{
+	while (*s && ft_isspace(*s))
+		s++;
+	if (!(*s))
+		return (true);
+	else
+		return (false);
+}
+
+static bool	parse_single_line(char *line, t_scene *scene)
+{
+	char	**splitted_data;
+	bool	result;
+
+	if (is_space_line(line))
+		return (true);
+	splitted_data = ft_split(line, ' ');
+	if (!splitted_data)
+		return (false);
+	result = parse_line_sections(splitted_data, scene);
+	free_splited_data(splitted_data);
+	return (result);
+}
+
+bool	read_lines_loop(int fd, t_scene *scene)
+{
+	char *line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!line || parse_single_line(line, scene) == false)
+		{
+			free(line);
+			return (false);
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (true);
+}
