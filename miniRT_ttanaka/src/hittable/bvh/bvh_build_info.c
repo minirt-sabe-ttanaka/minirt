@@ -56,10 +56,16 @@ t_bvh_build_info	*setup_bvh_build_info(t_hittable_lst *objects)
 void	swap_build_info(t_bvh_build_info *info_1, t_bvh_build_info *info_2)
 {
 	t_bvh_build_info	tmp;
+	t_hittable			*ptr1;
+	t_hittable			*ptr2;
 
+	ptr1 = info_1->hittable_p;
+	ptr2 = info_2->hittable_p;	
 	tmp = *info_1;
 	*info_1 = *info_2;
 	*info_2 = tmp;
+	info_1->hittable_p = ptr1;
+	info_2->hittable_p = ptr2;
 }
 
 void	swap_t_hittable(t_hittable *h1, t_hittable *h2)
