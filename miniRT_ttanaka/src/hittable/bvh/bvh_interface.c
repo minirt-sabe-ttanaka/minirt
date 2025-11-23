@@ -13,7 +13,7 @@ bool			bvh_bbox(const void *object, t_aabb *output_bbox);
 void	destroy_bvh_build(t_bvh_build *bvh_build)
 {
 	(void)bvh_build;
-	printf("TODO: make destroy_bvh_build"\n);
+	printf("TODO: make destroy_bvh_build\n");
 }
 
 t_linear_bvh	*bvh_init(t_hittable_lst *objects)

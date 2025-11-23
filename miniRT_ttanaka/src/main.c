@@ -52,7 +52,7 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth)
 int	raytracing(t_scene *scene, t_camera *cam)
 {
 	const int	max_depth = 10;
-	const int	sample_per_pixel = 25;
+	const int	sample_per_pixel = 200;
 	t_ray		r;
 	t_color3	pixel_color;
 	double		u;
