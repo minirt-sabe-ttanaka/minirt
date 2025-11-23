@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:38:22 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:10:34 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 14:10:38 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 void						*ft_calloc(size_t count, size_t size);
 void						ft_putchar_fd(char c, int fd);
 void						ft_putstr_fd(char *s, int fd);
+void						ft_puterr(char *s);
 void						ft_putendl_fd(char *s, int fd);
+void						ft_putnbr_fd(int n, int fd);
+
 char						*ft_strrchr(const char *s, int c);
 int							ft_strcmp(char *s1, char *s2);
 char						**ft_split(char const *s, char c);

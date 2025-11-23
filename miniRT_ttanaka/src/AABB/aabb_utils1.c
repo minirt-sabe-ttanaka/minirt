@@ -6,11 +6,12 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 02:25:41 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 16:24:29 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 00:56:27 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabb.h"
+#include <stdio.h>
 
 bool		aabb_hit(const t_aabb *bbox, const t_ray *r, double t_min,
 				double t_max);

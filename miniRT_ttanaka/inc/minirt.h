@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
+#define EPS 1e-2
+#define SHADOW_BIAS 1e-2
+
 void	my_mlx_pixel_put(t_scene *world, int x, int y, int rgb);
 
 #endif

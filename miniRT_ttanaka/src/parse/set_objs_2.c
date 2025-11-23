@@ -1,49 +1,49 @@
 #include "parse.h"
-static bool	parse_cylinder_config(char **splitted_data,
-		t_cylinder_config *config, t_color3 *color);
-bool	set_cylinder(char **splitted_data, t_scene *scene);
 
 static bool	parse_cylinder_config(char **splitted_data,
-		t_cylinder_config *config, t_color3 *color)
+				t_cylinder_config *c_config, t_material_config *m_config);
+bool		set_cylinder(char **splitted_data, t_scene *scene);
+
+static bool	parse_cylinder_config(char **splitted_data,
+		t_cylinder_config *c_config, t_material_config *m_config)
 {
-	if (ft_strarr_len(splitted_data) != 6)
+	size_t	len;
+
+	len = ft_strarr_len(splitted_data);
+	if (len != 7 && len != 8)
 		return (false);
-	if (parse_coords_format(splitted_data[1], &(config->center)) == false)
+	if (parse_coords_format(splitted_data[1], &(c_config->center)) == false)
 		return (false);
-	if (parse_coords_format(splitted_data[2], &(config->axis_dir)) == false)
+	if (parse_coords_format(splitted_data[2], &(c_config->axis_dir)) == false)
 		return (false);
-	if (fabs(vec_norm_squared(config->axis_dir) - 1.0) > 1e-9)
+	if (fabs(vec_norm_squared(c_config->axis_dir) - 1.0) > EPS)
 		return (false);
-	if (is_double(splitted_data[3]) == false
-			|| is_double(splitted_data[4]) == false)
+	if (parse_double(splitted_data[3], &(c_config->radius)) == false
+		|| parse_double(splitted_data[4], &(c_config->height)) == false)
 		return (false);
-	config->radius = ft_strtod(splitted_data[3]) / 2.0;
-	config->height = ft_strtod(splitted_data[4]);
-	if (config->radius <= 0 || config->height <= 0)
+	if (c_config->radius <= 0 || c_config->height <= 0)
 		return (false);
-	if (parse_color_format(splitted_data[5], color) == false)
+	if (parse_material_format(splitted_data[5], splitted_data[6],
+			splitted_data[7], m_config) == false)
 		return (false);
 	return (true);
 }
+
 bool	set_cylinder(char **splitted_data, t_scene *scene)
 {
-	t_cylinder_config	config;
-	t_color3			color;
 	t_cylinder			*cy;
-	t_lambertian		*l;
+	t_cylinder_config	c_config;
+	t_material_config	m_config;
+	t_material			m;
 
-	if (parse_cylinder_config(splitted_data, &config, &color) == false)
+	if (parse_cylinder_config(splitted_data, &c_config, &m_config) == false)
 		return (false);
 	cy = (t_cylinder *)malloc(sizeof(t_cylinder));
-	l = (t_lambertian *)malloc(sizeof(t_lambertian));
-	if (!cy || !l)
-	{
-		free(cy);
-		free(l);
+	if (!cy)
 		return (false);
-	}
-	if (hittable_lst_add(scene->objects, create_cylinder(cy, &config,
-				create_lambertian(l, color))) == false)
+	if (create_material(&m_config, &m) == false)
+		return (false);
+	if (hittable_lst_add(scene->objects, create_cylinder(cy, &c_config, m)) == false)
 		return (false);
 	return (true);
 }

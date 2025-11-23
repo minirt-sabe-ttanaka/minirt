@@ -14,6 +14,12 @@ typedef struct s_sphere
 	t_material	mat;
 }				t_sphere;
 
+typedef struct s_sphere_config
+{
+	t_point3	center;
+	double		radius;
+}				t_sphere_config;
+
 t_hittable		create_sphere(t_sphere *s, t_point3 center, double radius,
 					t_material mat);
 bool			sphere_hit(const void *object, const t_ray *r, double t_min,
@@ -25,6 +31,12 @@ typedef struct s_plane
 	t_vec3		normal;
 	t_material	mat;
 }				t_plane;
+
+typedef struct t_plane_config
+{
+	t_point3	point;
+	t_vec3		normal;
+}				t_plane_config;
 
 t_hittable		create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 					t_material mat);

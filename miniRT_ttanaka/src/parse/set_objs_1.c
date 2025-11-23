@@ -1,91 +1,84 @@
 #include "parse.h"
 
-static bool	parse_sphere_config(char **splitted_data, t_point3 *center,
-				double *radius, t_color3 *color);
+static bool	parse_sphere_config(char **splitted_data, t_sphere_config *s_config, t_material_config *m_config);
 bool		set_sphere(char **splitted_data, t_scene *scene);
-static bool	parse_plane_config(char **splitted_data, t_point3 *point,
-				t_vec3 *normal, t_color3 *color);
+static bool	parse_plane_config(char **splitted_data, t_plane_config *p_config, t_material_config *m_config);
 bool		set_plane(char **splitted_data, t_scene *scene);
 
-static bool	parse_sphere_config(char **splitted_data, t_point3 *center,
-		double *radius, t_color3 *color)
+static bool	parse_sphere_config(char **splitted_data, t_sphere_config *s_config,
+		t_material_config *m_config)
 {
-	double	diameter;
+	size_t	len;
 
-	if (ft_strarr_len(splitted_data) != 4)
+	len = ft_strarr_len(splitted_data);
+	if (len != 5 && len != 6)
 		return (false);
-	if (parse_coords_format(splitted_data[1], center) == false)
+	if (parse_coords_format(splitted_data[1], &(s_config->center)) == false)
 		return (false);
-	if (is_double(splitted_data[2]) == false)
+	if (parse_double(splitted_data[2], &(s_config->radius)) == false)
 		return (false);
-	diameter = ft_strtod(splitted_data[2]);
-	if (diameter <= 0.0)
+	if (s_config->radius <= 0.0)
 		return (false);
-	*radius = diameter / 2.0;
-	if (parse_color_format(splitted_data[3], color) == false)
+	s_config->radius /= 2.0;
+	if (parse_material_format(splitted_data[4], splitted_data[5],
+			splitted_data[6], m_config) == false)
 		return (false);
 	return (true);
 }
 
 bool	set_sphere(char **splitted_data, t_scene *scene)
 {
-	t_sphere		*sphere;
-	t_lambertian	*l;
-	t_point3		center;
-	t_color3		color;
-	double			radius;
+	t_sphere			*sphere;
+	t_sphere_config		s_config;
+	t_material_config	m_config;
+	t_material			m;
 
-	if (parse_sphere_config(splitted_data, &center, &radius, &color) == false)
+	if (parse_sphere_config(splitted_data, &s_config, &m_config) == false)
 		return (false);
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
-	l = (t_lambertian *)malloc(sizeof(t_lambertian));
-	if (!sphere || !l)
-	{
-		free(sphere);
-		free(l);
+	if (!sphere)
 		return (false);
-	}
-	if (hittable_lst_add(scene->objects, create_sphere(sphere, center, radius,
-				create_lambertian(l, color))) == false)
+	if (create_material(&m_config, &m) == false)
+		return (false);
+	if (hittable_lst_add(scene->objects, create_sphere(sphere, s_config.center,
+				s_config.radius, m)) == false)
 		return (false);
 	return (true);
 }
 
-static bool	parse_plane_config(char **splitted_data, t_point3 *point,
-		t_vec3 *normal, t_color3 *color)
+static bool	parse_plane_config(char **splitted_data, t_plane_config *p_config, t_material_config *m_config)
 {
-	if (ft_strarr_len(splitted_data) != 4)
+	size_t len;
+
+	len = ft_strarr_len(splitted_data);
+	if (len != 5 && len != 6)
 		return (false);
-	if (parse_coords_format(splitted_data[1], point) == false)
+	if (parse_coords_format(splitted_data[1], &(p_config->point)) == false)
 		return (false);
-	if (parse_coords_format(splitted_data[2], normal) == false)
+	if (parse_coords_format(splitted_data[2], &(p_config->normal)) == false)
 		return (false);
-	if (fabs(vec_norm_squared(*normal) - 1.0) > 1e-9)
+	if (fabs(vec_norm_squared(p_config->normal) - 1.0) > EPS)
 		return (false);
-	if (parse_color_format(splitted_data[3], color) == false)
+	if (parse_material_format(splitted_data[3], splitted_data[4], splitted_data[5], m_config))
 		return (false);
 	return (true);
 }
+
 bool	set_plane(char **splitted_data, t_scene *scene)
 {
-	t_point3		point;
-	t_vec3			normal;
-	t_color3		color;
-	t_plane			*plane;
-	t_lambertian	*l;
+	t_plane				*plane;
+	t_plane_config		p_config;
+	t_material_config	m_config;
+	t_material			m;
 
-	if (parse_plane_config(splitted_data, &point, &normal, &color) == false)
+	if (parse_plane_config(splitted_data, &p_config, &m_config) == false)
 		return (false);
 	plane = (t_plane *)malloc(sizeof(t_plane));
-	l = (t_lambertian *)malloc(sizeof(t_lambertian));
-	if (!plane || !l)
-	{
-		free(plane);
-		free(l);
+	if (!plane)
 		return (false);
-	}
-	if (hittable_lst_add(scene->objects, create_plane(plane, point, normal,
-				create_lambertian(l, color))) == false)
+	if (create_material(&m_config, &m) == false)
+		return (false);
+	if (hittable_lst_add(scene->objects, create_plane(plane, p_config.point, p_config.normal, m)) == false)
 		return (false);
 	return (true);
 }

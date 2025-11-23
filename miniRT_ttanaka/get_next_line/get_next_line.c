@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:29:18 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:54:05 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 14:21:33 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,14 @@ int	ft_get_and_put_c(t_buf_node *node, t_string *res)
 	}
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, bool *err)
 {
 	static t_hashtable	hashtable;
 	t_buf_node			*node;
 	t_string			res;
 	int					i;
 
+	*err = false;
 	if (!hashtable.initialized)
 	{
 		i = 0;
@@ -129,12 +130,12 @@ char	*get_next_line(int fd)
 		hashtable.initialized = 1;
 	}
 	if (fd < 0)
-		return (NULL);
+		return (*err = true, NULL);
 	res.str = NULL;
 	res.len = 0;
 	res.cap = 0;
 	node = ft_search(fd, hashtable.table);
 	if (!node || !ft_get_and_put_c(node, &res))
-		return (NULL);
-	return (adjust_string(&res));
+		return (*err = true, NULL);
+	return (adjust_string(&res, err));
 }

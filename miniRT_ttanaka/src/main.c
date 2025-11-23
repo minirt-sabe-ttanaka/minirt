@@ -12,10 +12,10 @@ static t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
 	light_dir = vec_sub(scene->light.origin, rec->p);
 	dist = vec_norm(light_dir);
 	light_dir = vec_normalize(light_dir);
-	shadow_ray = ray_init(vec_add(rec->p, vec_scale(rec->normal, 1e-4)),
+	shadow_ray = ray_init(vec_add(rec->p, vec_scale(rec->normal, SHADOW_BIAS)),
 			light_dir);
-	if (scene->bvh->vtable->hit(scene->bvh->object, &shadow_ray, 1e-4, dist
-			- 1e-4, &tmp_rec))
+	if (scene->bvh->vtable->hit(scene->bvh->object, &shadow_ray, SHADOW_BIAS,
+			dist - SHADOW_BIAS, &tmp_rec))
 		return (color_init(0, 0, 0));
 	cos_theta = vec_dot(rec->normal, light_dir);
 	if (cos_theta < 0)
@@ -52,13 +52,14 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth)
 int	raytracing(t_scene *scene, t_camera *cam)
 {
 	const int	max_depth = 10;
-	const int	sample_per_pixel = 100;
+	const int	sample_per_pixel = 25;
 	t_ray		r;
 	t_color3	pixel_color;
 	double		u;
 	double		v;
 	t_color3	corrected_color;
 	double		progress;
+	t_color3	sample_col;
 
 	for (int y = 0; y < scene->screen_height; y++)
 	{
@@ -77,12 +78,15 @@ int	raytracing(t_scene *scene, t_camera *cam)
 				v = (scene->screen_height - 1 - y + random_double())
 					/ (scene->screen_height - 1);
 				r = camera_get_ray(cam, u, v);
-				pixel_color = color_add(pixel_color, ray_color(&r, scene,
-							max_depth));
+				sample_col = ray_color(&r, scene, max_depth);
+				pixel_color = color_add(pixel_color, sample_col);
 			}
-			corrected_color.r = sqrt(pixel_color.r / sample_per_pixel);
-			corrected_color.g = sqrt(pixel_color.g / sample_per_pixel);
-			corrected_color.b = sqrt(pixel_color.b / sample_per_pixel);
+			corrected_color.r = ft_clamp(sqrt(pixel_color.r / sample_per_pixel),
+					0, 1);
+			corrected_color.g = ft_clamp(sqrt(pixel_color.g / sample_per_pixel),
+					0, 1);
+			corrected_color.b = ft_clamp(sqrt(pixel_color.b / sample_per_pixel),
+					0, 1);
 			my_mlx_pixel_put(scene, x, y, tcolor2rgb(corrected_color));
 		}
 	}
@@ -109,7 +113,8 @@ static int	init_scene(t_scene *scene)
 
 int	main(int argc, char *argv[])
 {
-	t_scene scene;
+	t_scene	scene;
+
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	if (init_scene(&scene) == EXIT_FAILURE)

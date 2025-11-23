@@ -44,6 +44,8 @@ SRCS_PARSE	=	$(SRC_DIR)/parse/parse.c \
                 $(SRC_DIR)/parse/parse_utils.c \
                 $(SRC_DIR)/parse/parse_color.c \
                 $(SRC_DIR)/parse/parse_coords.c \
+                $(SRC_DIR)/parse/parse_double.c \
+                $(SRC_DIR)/parse/parse_material.c \
                 $(SRC_DIR)/parse/set_env.c \
                 $(SRC_DIR)/parse/set_objs_1.c \
                 $(SRC_DIR)/parse/set_objs_2.c
@@ -52,6 +54,7 @@ SRCS_UTILS	=	$(SRC_DIR)/utils/color/color.c \
 				$(SRC_DIR)/utils/color/color_utils_1.c \
 				$(SRC_DIR)/utils/color/color_utils_2.c \
                 $(SRC_DIR)/utils/ft_math/calculation.c \
+                $(SRC_DIR)/utils/ft_math/clamp.c \
                 $(SRC_DIR)/utils/ft_math/random.c \
                 $(SRC_DIR)/utils/vector/vec.c \
                 $(SRC_DIR)/utils/vector/vec_utils_1.c \

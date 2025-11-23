@@ -1,0 +1,409 @@
+BVH Nodes created: 129
+TODO: make destroy_bvh_buildObjects loaded: 101
+Center ray origin=(0.000000,0.000000,-80.000000) dir=(0.000000,0.000000,1.000000)
+BVH missed
+obj[00] vtable=0x102a7a090 bbox min=(-49.000000,-49.000000,-4.000000) max=(-41.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=0 t=98.225242 p=(-43.239182,-43.239182,-3.130342)
+ -> BVH miss-to-center idx=0
+obj[01] vtable=0x102a7a090 bbox min=(-49.000000,-39.000000,-4.000000) max=(-41.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=1 t=94.234414 p=(-43.167648,-33.574838,-3.257514)
+ -> BVH miss-to-center idx=1
+obj[02] vtable=0x102a7a090 bbox min=(-39.000000,-49.000000,-4.000000) max=(-31.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=2 t=94.234414 p=(-33.574838,-43.167648,-3.257514)
+ -> BVH miss-to-center idx=2
+obj[03] vtable=0x102a7a090 bbox min=(-39.000000,-39.000000,-4.000000) max=(-31.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=3 t=90.074439 p=(-33.511817,-33.511817,-3.401562)
+ -> BVH miss-to-center idx=3
+obj[04] vtable=0x102a7a090 bbox min=(-49.000000,-29.000000,-4.000000) max=(-41.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=4 t=91.131488 p=(-43.107882,-23.948823,-3.363765)
+ -> BVH miss-to-center idx=4
+obj[05] vtable=0x102a7a090 bbox min=(-49.000000,-19.000000,-4.000000) max=(-41.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=5 t=89.005376 p=(-43.064628,-14.354876,-3.440661)
+ -> BVH miss-to-center idx=5
+obj[06] vtable=0x102a7a090 bbox min=(-49.000000,-9.000000,-4.000000) max=(-41.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=6 t=87.923882 p=(-43.041858,-4.782429,-3.481141)
+ -> BVH miss-to-center idx=6
+obj[07] vtable=0x102a7a090 bbox min=(-39.000000,-29.000000,-4.000000) max=(-31.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=7 t=86.829511 p=(-33.458651,-23.899036,-3.523084)
+ -> BVH miss-to-center idx=7
+obj[08] vtable=0x102a7a090 bbox min=(-39.000000,-19.000000,-4.000000) max=(-31.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=8 t=84.600226 p=(-33.419869,-14.322801,-3.611729)
+ -> BVH miss-to-center idx=8
+obj[09] vtable=0x102a7a090 bbox min=(-39.000000,-9.000000,-4.000000) max=(-31.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=9 t=83.464278 p=(-33.399347,-4.771335,-3.658636)
+ -> BVH miss-to-center idx=9
+obj[10] vtable=0x102a7a090 bbox min=(-29.000000,-49.000000,-4.000000) max=(-21.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=10 t=91.131488 p=(-23.948823,-43.107882,-3.363765)
+ -> BVH miss-to-center idx=10
+obj[11] vtable=0x102a7a090 bbox min=(-9.000000,-49.000000,-4.000000) max=(-1.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=11 t=87.923882 p=(-4.782429,-43.041858,-3.481141)
+ -> BVH miss-to-center idx=11
+obj[12] vtable=0x102a7a090 bbox min=(-19.000000,-49.000000,-4.000000) max=(-11.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=12 t=89.005376 p=(-14.354876,-43.064628,-3.440661)
+ -> BVH miss-to-center idx=12
+obj[13] vtable=0x102a7a090 bbox min=(-29.000000,-39.000000,-4.000000) max=(-21.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=13 t=86.829511 p=(-23.899036,-33.458651,-3.523084)
+ -> BVH miss-to-center idx=13
+obj[14] vtable=0x102a7a090 bbox min=(-19.000000,-39.000000,-4.000000) max=(-11.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=14 t=84.600226 p=(-14.322801,-33.419869,-3.611729)
+ -> BVH miss-to-center idx=14
+obj[15] vtable=0x102a7a090 bbox min=(-9.000000,-39.000000,-4.000000) max=(-1.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=15 t=83.464278 p=(-4.771335,-33.399347,-3.658636)
+ -> BVH miss-to-center idx=15
+obj[16] vtable=0x102a7a090 bbox min=(-29.000000,-29.000000,-4.000000) max=(-21.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=16 t=83.464278 p=(-23.856676,-23.856676,-3.658636)
+ -> BVH miss-to-center idx=16
+obj[17] vtable=0x102a7a090 bbox min=(-29.000000,-19.000000,-4.000000) max=(-21.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=17 t=81.146932 p=(-23.825560,-14.295336,-3.758209)
+ -> BVH miss-to-center idx=17
+obj[18] vtable=0x102a7a090 bbox min=(-29.000000,-9.000000,-4.000000) max=(-21.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=18 t=79.964278 p=(-23.809017,-4.761803,-3.811145)
+ -> BVH miss-to-center idx=18
+obj[19] vtable=0x102a7a090 bbox min=(-19.000000,-29.000000,-4.000000) max=(-11.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=19 t=81.146932 p=(-14.295336,-23.825560,-3.758209)
+ -> BVH miss-to-center idx=19
+obj[20] vtable=0x102a7a090 bbox min=(-19.000000,-19.000000,-4.000000) max=(-11.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=20 t=78.764727 p=(-14.275053,-14.275053,-3.866381)
+ -> BVH miss-to-center idx=20
+obj[21] vtable=0x102a7a090 bbox min=(-19.000000,-9.000000,-4.000000) max=(-11.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=21 t=77.547532 p=(-14.264233,-4.754744,-3.924092)
+ -> BVH miss-to-center idx=21
+obj[22] vtable=0x102a7a090 bbox min=(-9.000000,-29.000000,-4.000000) max=(-1.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=22 t=79.964278 p=(-4.761803,-23.809017,-3.811145)
+ -> BVH miss-to-center idx=22
+obj[23] vtable=0x102a7a090 bbox min=(-9.000000,-19.000000,-4.000000) max=(-1.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=23 t=77.547532 p=(-4.754744,-14.264233,-3.924092)
+ -> BVH miss-to-center idx=23
+obj[24] vtable=0x102a7a090 bbox min=(-9.000000,-9.000000,-4.000000) max=(-1.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=24 t=76.311892 p=(-4.750971,-4.750971,-3.984466)
+ -> BVH miss-to-center idx=24
+obj[25] vtable=0x102a7a090 bbox min=(-49.000000,1.000000,-4.000000) max=(-41.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=25 t=87.923882 p=(-43.041858,4.782429,-3.481141)
+ -> BVH miss-to-center idx=25
+obj[26] vtable=0x102a7a090 bbox min=(-49.000000,11.000000,-4.000000) max=(-41.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=26 t=89.005376 p=(-43.064628,14.354876,-3.440661)
+ -> BVH miss-to-center idx=26
+obj[27] vtable=0x102a7a090 bbox min=(-39.000000,1.000000,-4.000000) max=(-31.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=27 t=83.464278 p=(-33.399347,4.771335,-3.658636)
+ -> BVH miss-to-center idx=27
+obj[28] vtable=0x102a7a090 bbox min=(-39.000000,11.000000,-4.000000) max=(-31.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=28 t=84.600226 p=(-33.419869,14.322801,-3.611729)
+ -> BVH miss-to-center idx=28
+obj[29] vtable=0x102a7a090 bbox min=(-49.000000,21.000000,-4.000000) max=(-41.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=29 t=91.131488 p=(-43.107882,23.948823,-3.363765)
+ -> BVH miss-to-center idx=29
+obj[30] vtable=0x102a7a090 bbox min=(-49.000000,31.000000,-4.000000) max=(-41.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=30 t=94.234414 p=(-43.167648,33.574838,-3.257514)
+ -> BVH miss-to-center idx=30
+obj[31] vtable=0x102a7a090 bbox min=(-49.000000,41.000000,-4.000000) max=(-41.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=31 t=98.225242 p=(-43.239182,43.239182,-3.130342)
+ -> BVH miss-to-center idx=31
+obj[32] vtable=0x102a7a090 bbox min=(-39.000000,21.000000,-4.000000) max=(-31.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=32 t=86.829511 p=(-33.458651,23.899036,-3.523084)
+ -> BVH miss-to-center idx=32
+obj[33] vtable=0x102a7a090 bbox min=(-39.000000,31.000000,-4.000000) max=(-31.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=33 t=90.074439 p=(-33.511817,33.511817,-3.401562)
+ -> BVH miss-to-center idx=33
+obj[34] vtable=0x102a7a090 bbox min=(-39.000000,41.000000,-4.000000) max=(-31.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=34 t=94.234414 p=(-33.574838,43.167648,-3.257514)
+ -> BVH miss-to-center idx=34
+obj[35] vtable=0x102a7a090 bbox min=(-29.000000,1.000000,-4.000000) max=(-21.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=35 t=79.964278 p=(-23.809017,4.761803,-3.811145)
+ -> BVH miss-to-center idx=35
+obj[36] vtable=0x102a7a090 bbox min=(-9.000000,1.000000,-4.000000) max=(-1.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=36 t=76.311892 p=(-4.750971,4.750971,-3.984466)
+ -> BVH miss-to-center idx=36
+obj[37] vtable=0x102a7a090 bbox min=(-19.000000,1.000000,-4.000000) max=(-11.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=37 t=77.547532 p=(-14.264233,4.754744,-3.924092)
+ -> BVH miss-to-center idx=37
+obj[38] vtable=0x102a7a090 bbox min=(-29.000000,11.000000,-4.000000) max=(-21.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=38 t=81.146932 p=(-23.825560,14.295336,-3.758209)
+ -> BVH miss-to-center idx=38
+obj[39] vtable=0x102a7a090 bbox min=(-19.000000,11.000000,-4.000000) max=(-11.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=39 t=78.764727 p=(-14.275053,14.275053,-3.866381)
+ -> BVH miss-to-center idx=39
+obj[40] vtable=0x102a7a090 bbox min=(-9.000000,11.000000,-4.000000) max=(-1.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=40 t=77.547532 p=(-4.754744,14.264233,-3.924092)
+ -> BVH miss-to-center idx=40
+obj[41] vtable=0x102a7a090 bbox min=(-29.000000,21.000000,-4.000000) max=(-21.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=41 t=83.464278 p=(-23.856676,23.856676,-3.658636)
+ -> BVH miss-to-center idx=41
+obj[42] vtable=0x102a7a090 bbox min=(-29.000000,31.000000,-4.000000) max=(-21.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=42 t=86.829511 p=(-23.899036,33.458651,-3.523084)
+ -> BVH miss-to-center idx=42
+obj[43] vtable=0x102a7a090 bbox min=(-29.000000,41.000000,-4.000000) max=(-21.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=43 t=91.131488 p=(-23.948823,43.107882,-3.363765)
+ -> BVH miss-to-center idx=43
+obj[44] vtable=0x102a7a090 bbox min=(-19.000000,21.000000,-4.000000) max=(-11.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=44 t=81.146932 p=(-14.295336,23.825560,-3.758209)
+ -> BVH miss-to-center idx=44
+obj[45] vtable=0x102a7a090 bbox min=(-19.000000,31.000000,-4.000000) max=(-11.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=45 t=84.600226 p=(-14.322801,33.419869,-3.611729)
+ -> BVH miss-to-center idx=45
+obj[46] vtable=0x102a7a090 bbox min=(-19.000000,41.000000,-4.000000) max=(-11.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=46 t=89.005376 p=(-14.354876,43.064628,-3.440661)
+ -> BVH miss-to-center idx=46
+obj[47] vtable=0x102a7a090 bbox min=(-9.000000,21.000000,-4.000000) max=(-1.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=47 t=79.964278 p=(-4.761803,23.809017,-3.811145)
+ -> BVH miss-to-center idx=47
+obj[48] vtable=0x102a7a090 bbox min=(-9.000000,31.000000,-4.000000) max=(-1.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=48 t=83.464278 p=(-4.771335,33.399347,-3.658636)
+ -> BVH miss-to-center idx=48
+obj[49] vtable=0x102a7a090 bbox min=(-9.000000,41.000000,-4.000000) max=(-1.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=49 t=87.923882 p=(-4.782429,43.041858,-3.481141)
+ -> BVH miss-to-center idx=49
+obj[50] vtable=0x102a7a080 bbox min=(-1000000000000000019884624838656.000000,-1000000000000000019884624838656.000000,-1000000000000000019884624838656.000000) max=(1000000000000000019884624838656.000000,1000000000000000019884624838656.000000,1000000000000000019884624838656.000000)
+ -> aabb_hit to center: 1
+ -> List miss-to-center idx=50
+ -> BVH miss-to-center idx=50
+obj[51] vtable=0x102a7a090 bbox min=(1.000000,-39.000000,-4.000000) max=(9.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=51 t=83.464278 p=(4.771335,-33.399347,-3.658636)
+ -> BVH miss-to-center idx=51
+obj[52] vtable=0x102a7a090 bbox min=(1.000000,-49.000000,-4.000000) max=(9.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=52 t=87.923882 p=(4.782429,-43.041858,-3.481141)
+ -> BVH miss-to-center idx=52
+obj[53] vtable=0x102a7a090 bbox min=(11.000000,-39.000000,-4.000000) max=(19.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=53 t=84.600226 p=(14.322801,-33.419869,-3.611729)
+ -> BVH miss-to-center idx=53
+obj[54] vtable=0x102a7a090 bbox min=(11.000000,-49.000000,-4.000000) max=(19.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=54 t=89.005376 p=(14.354876,-43.064628,-3.440661)
+ -> BVH miss-to-center idx=54
+obj[55] vtable=0x102a7a090 bbox min=(1.000000,-29.000000,-4.000000) max=(9.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=55 t=79.964278 p=(4.761803,-23.809017,-3.811145)
+ -> BVH miss-to-center idx=55
+obj[56] vtable=0x102a7a090 bbox min=(1.000000,-19.000000,-4.000000) max=(9.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=56 t=77.547532 p=(4.754744,-14.264233,-3.924092)
+ -> BVH miss-to-center idx=56
+obj[57] vtable=0x102a7a090 bbox min=(1.000000,-9.000000,-4.000000) max=(9.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=57 t=76.311892 p=(4.750971,-4.750971,-3.984466)
+ -> BVH miss-to-center idx=57
+obj[58] vtable=0x102a7a090 bbox min=(11.000000,-29.000000,-4.000000) max=(19.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=58 t=81.146932 p=(14.295336,-23.825560,-3.758209)
+ -> BVH miss-to-center idx=58
+obj[59] vtable=0x102a7a090 bbox min=(11.000000,-19.000000,-4.000000) max=(19.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=59 t=78.764727 p=(14.275053,-14.275053,-3.866381)
+ -> BVH miss-to-center idx=59
+obj[60] vtable=0x102a7a090 bbox min=(11.000000,-9.000000,-4.000000) max=(19.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=60 t=77.547532 p=(14.264233,-4.754744,-3.924092)
+ -> BVH miss-to-center idx=60
+obj[61] vtable=0x102a7a090 bbox min=(21.000000,-49.000000,-4.000000) max=(29.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=61 t=91.131488 p=(23.948823,-43.107882,-3.363765)
+ -> BVH miss-to-center idx=61
+obj[62] vtable=0x102a7a090 bbox min=(31.000000,-49.000000,-4.000000) max=(39.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=62 t=94.234414 p=(33.574838,-43.167648,-3.257514)
+ -> BVH miss-to-center idx=62
+obj[63] vtable=0x102a7a090 bbox min=(41.000000,-49.000000,-4.000000) max=(49.000000,-41.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=63 t=98.225242 p=(43.239182,-43.239182,-3.130342)
+ -> BVH miss-to-center idx=63
+obj[64] vtable=0x102a7a090 bbox min=(21.000000,-39.000000,-4.000000) max=(29.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=64 t=86.829511 p=(23.899036,-33.458651,-3.523084)
+ -> BVH miss-to-center idx=64
+obj[65] vtable=0x102a7a090 bbox min=(31.000000,-39.000000,-4.000000) max=(39.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=65 t=90.074439 p=(33.511817,-33.511817,-3.401562)
+ -> BVH miss-to-center idx=65
+obj[66] vtable=0x102a7a090 bbox min=(41.000000,-39.000000,-4.000000) max=(49.000000,-31.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=66 t=94.234414 p=(43.167648,-33.574838,-3.257514)
+ -> BVH miss-to-center idx=66
+obj[67] vtable=0x102a7a090 bbox min=(21.000000,-29.000000,-4.000000) max=(29.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=67 t=83.464278 p=(23.856676,-23.856676,-3.658636)
+ -> BVH miss-to-center idx=67
+obj[68] vtable=0x102a7a090 bbox min=(21.000000,-19.000000,-4.000000) max=(29.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=68 t=81.146932 p=(23.825560,-14.295336,-3.758209)
+ -> BVH miss-to-center idx=68
+obj[69] vtable=0x102a7a090 bbox min=(21.000000,-9.000000,-4.000000) max=(29.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=69 t=79.964278 p=(23.809017,-4.761803,-3.811145)
+ -> BVH miss-to-center idx=69
+obj[70] vtable=0x102a7a090 bbox min=(31.000000,-29.000000,-4.000000) max=(39.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=70 t=86.829511 p=(33.458651,-23.899036,-3.523084)
+ -> BVH miss-to-center idx=70
+obj[71] vtable=0x102a7a090 bbox min=(31.000000,-19.000000,-4.000000) max=(39.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=71 t=84.600226 p=(33.419869,-14.322801,-3.611729)
+ -> BVH miss-to-center idx=71
+obj[72] vtable=0x102a7a090 bbox min=(31.000000,-9.000000,-4.000000) max=(39.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=72 t=83.464278 p=(33.399347,-4.771335,-3.658636)
+ -> BVH miss-to-center idx=72
+obj[73] vtable=0x102a7a090 bbox min=(41.000000,-29.000000,-4.000000) max=(49.000000,-21.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=73 t=91.131488 p=(43.107882,-23.948823,-3.363765)
+ -> BVH miss-to-center idx=73
+obj[74] vtable=0x102a7a090 bbox min=(41.000000,-9.000000,-4.000000) max=(49.000000,-1.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=74 t=87.923882 p=(43.041858,-4.782429,-3.481141)
+ -> BVH miss-to-center idx=74
+obj[75] vtable=0x102a7a090 bbox min=(41.000000,-19.000000,-4.000000) max=(49.000000,-11.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=75 t=89.005376 p=(43.064628,-14.354876,-3.440661)
+ -> BVH miss-to-center idx=75
+obj[76] vtable=0x102a7a090 bbox min=(1.000000,11.000000,-4.000000) max=(9.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=76 t=77.547532 p=(4.754744,14.264233,-3.924092)
+ -> BVH miss-to-center idx=76
+obj[77] vtable=0x102a7a090 bbox min=(1.000000,1.000000,-4.000000) max=(9.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=77 t=76.311892 p=(4.750971,4.750971,-3.984466)
+ -> BVH miss-to-center idx=77
+obj[78] vtable=0x102a7a090 bbox min=(11.000000,11.000000,-4.000000) max=(19.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=78 t=78.764727 p=(14.275053,14.275053,-3.866381)
+ -> BVH miss-to-center idx=78
+obj[79] vtable=0x102a7a090 bbox min=(11.000000,1.000000,-4.000000) max=(19.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=79 t=77.547532 p=(14.264233,4.754744,-3.924092)
+ -> BVH miss-to-center idx=79
+obj[80] vtable=0x102a7a090 bbox min=(1.000000,21.000000,-4.000000) max=(9.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=80 t=79.964278 p=(4.761803,23.809017,-3.811145)
+ -> BVH miss-to-center idx=80
+obj[81] vtable=0x102a7a090 bbox min=(1.000000,31.000000,-4.000000) max=(9.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=81 t=83.464278 p=(4.771335,33.399347,-3.658636)
+ -> BVH miss-to-center idx=81
+obj[82] vtable=0x102a7a090 bbox min=(1.000000,41.000000,-4.000000) max=(9.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=82 t=87.923882 p=(4.782429,43.041858,-3.481141)
+ -> BVH miss-to-center idx=82
+obj[83] vtable=0x102a7a090 bbox min=(11.000000,21.000000,-4.000000) max=(19.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=83 t=81.146932 p=(14.295336,23.825560,-3.758209)
+ -> BVH miss-to-center idx=83
+obj[84] vtable=0x102a7a090 bbox min=(11.000000,31.000000,-4.000000) max=(19.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=84 t=84.600226 p=(14.322801,33.419869,-3.611729)
+ -> BVH miss-to-center idx=84
+obj[85] vtable=0x102a7a090 bbox min=(11.000000,41.000000,-4.000000) max=(19.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=85 t=89.005376 p=(14.354876,43.064628,-3.440661)
+ -> BVH miss-to-center idx=85
+obj[86] vtable=0x102a7a090 bbox min=(21.000000,1.000000,-4.000000) max=(29.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=86 t=79.964278 p=(23.809017,4.761803,-3.811145)
+ -> BVH miss-to-center idx=86
+obj[87] vtable=0x102a7a090 bbox min=(31.000000,1.000000,-4.000000) max=(39.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=87 t=83.464278 p=(33.399347,4.771335,-3.658636)
+ -> BVH miss-to-center idx=87
+obj[88] vtable=0x102a7a090 bbox min=(41.000000,1.000000,-4.000000) max=(49.000000,9.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=88 t=87.923882 p=(43.041858,4.782429,-3.481141)
+ -> BVH miss-to-center idx=88
+obj[89] vtable=0x102a7a090 bbox min=(21.000000,11.000000,-4.000000) max=(29.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=89 t=81.146932 p=(23.825560,14.295336,-3.758209)
+ -> BVH miss-to-center idx=89
+obj[90] vtable=0x102a7a090 bbox min=(31.000000,11.000000,-4.000000) max=(39.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=90 t=84.600226 p=(33.419869,14.322801,-3.611729)
+ -> BVH miss-to-center idx=90
+obj[91] vtable=0x102a7a090 bbox min=(41.000000,11.000000,-4.000000) max=(49.000000,19.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=91 t=89.005376 p=(43.064628,14.354876,-3.440661)
+ -> BVH miss-to-center idx=91
+obj[92] vtable=0x102a7a090 bbox min=(21.000000,21.000000,-4.000000) max=(29.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=92 t=83.464278 p=(23.856676,23.856676,-3.658636)
+ -> BVH miss-to-center idx=92
+obj[93] vtable=0x102a7a090 bbox min=(21.000000,31.000000,-4.000000) max=(29.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=93 t=86.829511 p=(23.899036,33.458651,-3.523084)
+ -> BVH miss-to-center idx=93
+obj[94] vtable=0x102a7a090 bbox min=(21.000000,41.000000,-4.000000) max=(29.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=94 t=91.131488 p=(23.948823,43.107882,-3.363765)
+ -> BVH miss-to-center idx=94
+obj[95] vtable=0x102a7a090 bbox min=(31.000000,21.000000,-4.000000) max=(39.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=95 t=86.829511 p=(33.458651,23.899036,-3.523084)
+ -> BVH miss-to-center idx=95
+obj[96] vtable=0x102a7a090 bbox min=(31.000000,31.000000,-4.000000) max=(39.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=96 t=90.074439 p=(33.511817,33.511817,-3.401562)
+ -> BVH miss-to-center idx=96
+obj[97] vtable=0x102a7a090 bbox min=(31.000000,41.000000,-4.000000) max=(39.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=97 t=94.234414 p=(33.574838,43.167648,-3.257514)
+ -> BVH miss-to-center idx=97
+obj[98] vtable=0x102a7a090 bbox min=(41.000000,21.000000,-4.000000) max=(49.000000,29.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=98 t=91.131488 p=(43.107882,23.948823,-3.363765)
+ -> BVH miss-to-center idx=98
+obj[99] vtable=0x102a7a090 bbox min=(41.000000,31.000000,-4.000000) max=(49.000000,39.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=99 t=94.234414 p=(43.167648,33.574838,-3.257514)
+ -> BVH miss-to-center idx=99
+obj[100] vtable=0x102a7a090 bbox min=(41.000000,41.000000,-4.000000) max=(49.000000,49.000000,4.000000)
+ -> aabb_hit to center: 0
+ -> List hit-to-center idx=100 t=98.225242 p=(43.239182,43.239182,-3.130342)
+ -> BVH miss-to-center idx=100
+Rendering... 0.0%Rendering... 2.2%Rendering... 4.4%Rendering... 6.7%Rendering... 8.9%Rendering... 11.1%Rendering... 13.3%Rendering... 15.6%Rendering... 17.8%Rendering... 20.0%Rendering... 22.2%Rendering... 24.4%Rendering... 26.7%Rendering... 28.9%Rendering... 31.1%Rendering... 33.3%Rendering... 35.6%Rendering... 37.8%Rendering... 40.0%Rendering... 42.2%Rendering... 44.4%Rendering... 46.7%Rendering... 48.9%Rendering... 51.1%Rendering... 53.3%Rendering... 55.6%Rendering... 57.8%Rendering... 60.0%Rendering... 62.2%Rendering... 64.4%Rendering... 66.7%Rendering... 68.9%Rendering... 71.1%Rendering... 73.3%Rendering... 75.6%Rendering... 77.8%Rendering... 80.0%Rendering... 82.2%Rendering... 84.4%Rendering... 86.7%Rendering... 88.9%Rendering... 91.1%Rendering... 93.3%Rendering... 95.6%Rendering... 97.8%

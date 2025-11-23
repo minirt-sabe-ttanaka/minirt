@@ -11,7 +11,7 @@ bool	check_extension(char *path)
 	dot_ptr = ft_strrchr(path, '.');
 	if (!dot_ptr || ft_strcmp(dot_ptr, ".rt"))
 	{
-		// ft_puterr(ERRMSG_FILENAME);
+		ft_puterr(ERRMSG_FILENAME);
 		return (false);
 	}
 	return (true);

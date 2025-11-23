@@ -80,7 +80,7 @@ double	ft_strtod(const char *str)
 // 	print_res("5.75");
 // 	print_res("0.1");
 // 	print_res("-123.456");
-// 	print_res("1e-300");
+// 	print_res("SHADOW_BIAS00");
 // 	print_res("1e300");
 // 	return (0);
 // }

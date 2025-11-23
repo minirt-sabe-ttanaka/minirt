@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:29:08 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/05/06 12:01:39 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 14:06:42 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 // # include <fcntl.h>
 
 # define MALLOC_ERR -2
@@ -73,12 +74,12 @@ void					ft_bzero(void *s, size_t n);
 void					*ft_memmove(void *dst, const void *src, size_t len);
 t_buf_node				*create_buf_node(int fd);
 void					init_buf_node(t_buf_node *node, int fd);
-char					*adjust_string(t_string *res);
+char					*adjust_string(t_string *res, bool *err);
 
 int						ft_getc(t_buf_node *node);
 int						ft_putc(t_string *str, char c);
 t_buf_node				*ft_search(int fd, t_buf_node *hashtable);
 int						ft_get_and_put_c(t_buf_node *node, t_string *res);
-char					*get_next_line(int fd);
+char					*get_next_line(int fd, bool *err);
 
 #endif

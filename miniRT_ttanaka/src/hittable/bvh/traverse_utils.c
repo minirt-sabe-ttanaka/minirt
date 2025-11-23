@@ -38,7 +38,7 @@ void	hit_leaf_objects(t_bvh_traversal *info, const t_linear_bvh_node *node)
 	while (i < end_idx)
 	{
 		hittable = &(info->bvh->objects->objects[i]);
-		if (hittable->vtable->hit(hittable, info->r, info->t_min,
+		if (hittable->vtable->hit(hittable->object, info->r, info->t_min,
 				info->closest_so_far, &tmp_rec))
 		{
 			info->closest_so_far = tmp_rec.t;

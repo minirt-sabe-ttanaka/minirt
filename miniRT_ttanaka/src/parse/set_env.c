@@ -10,9 +10,8 @@ bool	set_ambient(char **splitted_data, t_scene *scene)
 		return (false);
 	if (ft_strarr_len(splitted_data) != 3)
 		return (false);
-	if (is_double(splitted_data[1]) == false)
+	if (parse_double(splitted_data[1], &(scene->ambient.ratio)) == false)
 		return (false);
-	scene->ambient.ratio = ft_strtod(splitted_data[1]);
 	if (scene->ambient.ratio < 0.0 || 1.0 < scene->ambient.ratio)
 		return (false);
 	if (parse_color_format(splitted_data[2], &(scene->ambient.color)) == false)
@@ -33,17 +32,16 @@ bool	set_camera(char **splitted_data, t_scene *scene)
 		return (false);
 	if (parse_coords_format(splitted_data[2], &(config.look_to)) == false)
 		return (false);
-	if (fabs(vec_norm_squared(config.look_to) - 1.0) > 1e-9)
+	if (fabs(vec_norm_squared(config.look_to) - 1.0) > EPS)
 		return (false);
-	if (is_double(splitted_data[3]) == false)
+	if (parse_double(splitted_data[3], &(config.fov)) == false)
 		return (false);
-	config.fov = ft_strtod(splitted_data[3]);
 	if (config.fov < 0.0 || 180.0 < config.fov)
 		return (false);
 	config.aspect_ratio = (double)scene->screen_width
 		/ (double)scene->screen_height;
 	config.vup = vec_init(0, 1, 0);
-	if (fabs(config.look_to.x) < 1e-9 && fabs(config.look_to.z) < 1e-9)
+	if (fabs(config.look_to.x) < EPS && fabs(config.look_to.z) < EPS)
 		config.vup = vec_init(1, 0, 0);
 	camera_init(&(scene->camera), &config);
 	scene->camera_initialized = true;
@@ -52,19 +50,18 @@ bool	set_camera(char **splitted_data, t_scene *scene)
 
 bool	set_light(char **splitted_data, t_scene *scene)
 {
-    if (scene->light_initialized == true)
-        return (false);
-    if (ft_strarr_len(splitted_data) != 4)
-        return (false);
-    if (parse_coords_format(splitted_data[1], &(scene->light.origin)) == false)
-        return (false);
-    if (is_double(splitted_data[2]) == false)
-        return (false);
-    scene->light.ratio = ft_strtod(splitted_data[2]);
-    if (scene->light.ratio < 0.0 || 1.0 < scene->light.ratio)
-        return (false);
-    if (parse_color_format(splitted_data[3], &(scene->light.color)) == false)
-        return (false);
-    scene->light_initialized = true;
-    return (true);
+	if (scene->light_initialized == true)
+		return (false);
+	if (ft_strarr_len(splitted_data) != 4)
+		return (false);
+	if (parse_coords_format(splitted_data[1], &(scene->light.origin)) == false)
+		return (false);
+	if (parse_double(splitted_data[2], &(scene->light.ratio)) == false)
+		return (false);
+	if (scene->light.ratio < 0.0 || 1.0 < scene->light.ratio)
+		return (false);
+	if (parse_color_format(splitted_data[3], &(scene->light.color)) == false)
+		return (false);
+	scene->light_initialized = true;
+	return (true);
 }

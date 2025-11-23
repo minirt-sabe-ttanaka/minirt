@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:29:12 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:55:11 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 14:06:22 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	init_buf_node(t_buf_node *node, int fd)
 	node->buffer.bufsiz = 0;
 }
 
-char	*adjust_string(t_string *res)
+char	*adjust_string(t_string *res, bool *err)
 {
 	char	*final_res;
 
@@ -101,7 +101,7 @@ char	*adjust_string(t_string *res)
 	{
 		if (res->str)
 			free(res->str);
-		return (NULL);
+		return (*err = true, NULL);
 	}
 	ft_memmove(final_res, res->str, res->len);
 	final_res[res->len] = '\0';

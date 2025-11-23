@@ -18,6 +18,8 @@
         "shape.h": "c",
         "hittable_lst.h": "c",
         "bvh.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "ratio": "c",
+        "material.h": "c"
     }
 }

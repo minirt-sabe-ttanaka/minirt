@@ -21,13 +21,10 @@ t_linear_bvh	*bvh_init(t_hittable_lst *objects)
 	t_bvh_build		*bvh_build;
 	t_linear_bvh	*linear_bvh;
 
-	printf("a\n");
 	bvh_build = build_bvh_recursive(objects);
 	if (!bvh_build)
 		return (NULL);
-	printf("b\n");
 	linear_bvh = flatten_bvh(bvh_build, objects);
-	printf("c\n");
 	destroy_bvh_build(bvh_build);
 	return (linear_bvh);
 }

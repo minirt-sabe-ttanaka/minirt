@@ -1,0 +1,14 @@
+# A ratio color
+A 0.2 255,255,255
+# C viewpoint direction fov
+C 0,5,-15 0,0,1 70
+# L coords ratio color
+L 5,10,-5 0.6 255,255,255
+
+# pl coords normal color material[lambertian/metal/dielectric] parameter[lambertian->None metal->fuzz([0.0, 1.0]), dielectric->ref_idx(>0)
+# pl 0,0,0 0,1,0 150,150,150 lambertian
+# sp center radius color material[lambertian/metal/dielectric] parameter[]
+# sp 0,2,0 4.0 255,50,50
+# sp 4,1,2 2.0 50,50,255
+# sp -4,1,2 2.0 50,255,50
+

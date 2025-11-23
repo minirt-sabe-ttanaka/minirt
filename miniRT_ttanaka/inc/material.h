@@ -4,7 +4,9 @@
 # include "ray.h"
 # include "utils.h"
 
-typedef struct s_hit_record t_hit_record;
+# define SHADOW_BIAS 1e-2
+
+typedef struct s_hit_record	t_hit_record;
 
 typedef struct s_material_vtable
 {
@@ -14,6 +16,14 @@ typedef struct s_material_vtable
 	t_color3				(*emitted)(const void *object, double u, double v,
 						const t_point3 *p);
 }							t_material_vtable;
+
+typedef enum e_material_type
+{
+	lambertian,
+	metal,
+	dielectric,
+	other
+}							t_material_type;
 
 typedef struct s_material
 {
@@ -51,6 +61,12 @@ typedef struct s_diffuse_light
 	t_color3				emit_color;
 }							t_diffuse_light;
 
+typedef struct s_material_config
+{
+	t_color3				color;
+	double					parameter;
+	t_material_type			type;
+}							t_material_config;
 
 void						set_face_normal(t_hit_record *rec, const t_ray *r,
 								const t_vec3 *outward_normal);

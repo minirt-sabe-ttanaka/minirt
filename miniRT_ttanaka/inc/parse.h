@@ -12,6 +12,7 @@
 # define ERRMSG_FILENAME "Error: filename extension must be \".rt\"."
 # define EXIT_EMPTY 2
 # define EXIT_ERROR 3
+# define EPS 1e-2
 
 typedef enum e_element_type
 {
@@ -27,8 +28,13 @@ typedef enum e_element_type
 
 bool	parse_color_format(char *s, t_color3 *color);
 
-bool	is_double(char *s);
 bool	parse_coords_format(char *s, t_color3 *point);
+
+bool	parse_double(char *s, double *val);
+
+bool	parse_material_format(char *color, char *type, char *param,
+			t_material_config *config);
+bool	create_material(t_material_config *m_config, t_material *material);
 
 bool	read_lines_loop(int fd, t_scene *scene);
 bool	check_extension(char *path);
@@ -41,5 +47,7 @@ bool	set_light(char **splitted_data, t_scene *scene);
 bool	set_sphere(char **splitted_data, t_scene *scene);
 bool	set_plane(char **splitted_data, t_scene *scene);
 bool	set_cylinder(char **splitted_data, t_scene *scene);
+
+void	notify_err_line_num(size_t line_num);
 
 #endif
