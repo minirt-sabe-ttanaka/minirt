@@ -23,6 +23,8 @@ bool parse_material_format(char *color, char *type, char *param, t_material_conf
         return (!param);
     else
     {
+        if (!param)
+            return (false);
         if (parse_double(param, &(config->parameter)) == false)
             return (false);
         if (config->type == metal)
