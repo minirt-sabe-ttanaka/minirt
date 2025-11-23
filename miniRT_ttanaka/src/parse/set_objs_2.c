@@ -23,6 +23,7 @@ static bool	parse_cylinder_config(char **splitted_data,
 		return (false);
 	if (c_config->radius <= 0 || c_config->height <= 0)
 		return (false);
+	c_config->radius /= 2.0;
 	if (parse_material_format(splitted_data[5], splitted_data[6],
 			splitted_data[7], m_config) == false)
 		return (false);
@@ -42,8 +43,14 @@ bool	set_cylinder(char **splitted_data, t_scene *scene)
 	if (!cy)
 		return (false);
 	if (create_material(&m_config, &m) == false)
+	{
+		free(cy);
 		return (false);
+	}
 	if (hittable_lst_add(scene->objects, create_cylinder(cy, &c_config, m)) == false)
+	{
+		free(cy);
 		return (false);
+	}
 	return (true);
 }

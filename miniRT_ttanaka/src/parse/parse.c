@@ -50,6 +50,11 @@ bool	parse_file(char *path, t_scene *scene)
 		return (false);
 	if (create_scene(path, scene) == false)
 		return (false);
+	if ((scene->objects->size) == 0)
+	{
+		scene->bvh = NULL;
+		return (true);
+	}
 	if (convert_lst_2_bvh(scene->objects, &scene->bvh) == false)
 		return (false);
 	return (true);

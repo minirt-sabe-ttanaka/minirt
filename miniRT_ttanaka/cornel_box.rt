@@ -1,0 +1,33 @@
+# ----------------------------------------
+# Scene: Cornell Box Style
+# Description: Indirect lighting test with emissive sphere
+# ----------------------------------------
+
+# Turn off ambient and point light to test path tracing emission
+A 0.0 0,0,0
+# L is intentionally omitted or set to black (if parser allows)
+L 0,9,0 0.0 0,0,0
+
+C 0,5,40 0,0,-1 40
+
+# --- Room Walls ---
+# Floor (White)
+pl 0,0,0 0,1,0 255,255,255 lambertian
+# Ceiling (White)
+pl 0,10,0 0,-1,0 255,255,255 lambertian
+# Back Wall (White)
+pl 0,5,-5 0,0,1 255,255,255 lambertian
+# Left Wall (Red)
+pl -5,5,0 1,0,0 255,0,0 lambertian
+# Right Wall (Green)
+pl 5,5,0 -1,0,0 0,255,0 lambertian
+
+# --- Light Source ---
+# Ceiling Light (Emissive Sphere)
+sp 0,9.9,0 3.0 255,255,255 diffuse_light
+
+# --- Objects Inside ---
+# Glass Sphere
+sp -2,2,0 4.0 255,255,255 dielectric 1.5
+# Chrome Cylinder
+cy 2,2,2 0,1,0 3.0 4.0 200,200,200 metal 0.0

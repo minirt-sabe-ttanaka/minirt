@@ -22,6 +22,7 @@ typedef enum e_material_type
 	lambertian,
 	metal,
 	dielectric,
+	diffuse_light,
 	other
 }							t_material_type;
 

@@ -14,7 +14,7 @@ static t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
 	light_dir = vec_normalize(light_dir);
 	shadow_ray = ray_init(vec_add(rec->p, vec_scale(rec->normal, SHADOW_BIAS)),
 			light_dir);
-	if (scene->bvh->vtable->hit(scene->bvh->object, &shadow_ray, SHADOW_BIAS,
+	if (scene->bvh && scene->bvh->vtable->hit(scene->bvh->object, &shadow_ray, SHADOW_BIAS,
 			dist - SHADOW_BIAS, &tmp_rec))
 		return (color_init(0, 0, 0));
 	cos_theta = vec_dot(rec->normal, light_dir);
@@ -35,7 +35,7 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth)
 
 	if (depth <= 0)
 		return (color_init(0, 0, 0));
-	if (!scene->bvh->vtable->hit(scene->bvh->object, r, 0.001, 100000.0, &rec))
+	if (!scene->bvh || !scene->bvh->vtable->hit(scene->bvh->object, r, 0.001, 100000.0, &rec))
 	{
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
 	}

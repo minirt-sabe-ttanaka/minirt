@@ -7,6 +7,16 @@ static bool	is_space_line(char *s);
 static bool	parse_single_line(char *line, t_scene *scene);
 bool		read_lines_loop(int fd, t_scene *scene);
 
+static void replace_whitespace_with_space(char *line)
+{
+    while (*line)
+    {
+        if (ft_isspace(*line))
+            *line = ' ';
+        line++;
+    }
+}
+
 static bool	parse_line_sections(char **splitted_data, t_scene *scene)
 {
 	if (!splitted_data[0])
@@ -40,7 +50,7 @@ static bool is_comment(char *s)
 {
 	while (*s && ft_isspace(*s))
 		s++;
-	if (*s && s[0] == '#')
+	if (*s && *s == '#')
 		return (true);
 	return (false);
 }
@@ -54,6 +64,7 @@ static bool	parse_single_line(char *line, t_scene *scene)
 		return (true);
 	if (is_comment(line))
 		return (true);
+	replace_whitespace_with_space(line);
 	splitted_data = ft_split(line, ' ');
 	if (!splitted_data)
 		return (false);
@@ -65,21 +76,14 @@ static bool	parse_single_line(char *line, t_scene *scene)
 bool	read_lines_loop(int fd, t_scene *scene)
 {
 	char *line;
-	int i;
 	bool gnl_err;
 
 	line = get_next_line(fd, &gnl_err);
-	i = 0;
 	while (line)
 	{
-		if (++i == INT_MIN)
-		{
-			free(line);
-			ft_puterr(LINE_TOO_LONG);
-			return (false);
-		}
 		if (parse_single_line(line, scene) == false)
 		{
+			notify_err_line_content(line);
 			free(line);
 			return (false);
 		}

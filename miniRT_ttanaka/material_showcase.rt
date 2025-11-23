@@ -1,0 +1,22 @@
+# ----------------------------------------
+# Scene: Material Showcase
+# ----------------------------------------
+
+A 0.2 255,255,255
+C 0,2,50 0,0,-1 50
+L 5,10,10 0.8 255,255,255
+
+# Floor (Checkered texture is not supported, so simple gray)
+pl 0,0,0 0,1,0 200,200,200 lambertian
+
+# Left: Red Lambertian (Matte)
+sp -6,1.5,0 3.0 200,50,50 lambertian
+
+# Center Left: Glass (Dielectric, ref_idx=1.5)
+sp -2,1.5,0 3.0 255,255,255 dielectric 1.5
+
+# Center Right: Mirror Metal (Fuzz=0.0)
+sp 2,1.5,0 3.0 200,200,200 metal 0.0
+
+# Right: Rough Metal (Fuzz=0.5)
+sp 6,1.5,0 3.0 200,200,200 metal 0.5

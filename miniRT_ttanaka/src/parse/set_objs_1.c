@@ -20,8 +20,8 @@ static bool	parse_sphere_config(char **splitted_data, t_sphere_config *s_config,
 	if (s_config->radius <= 0.0)
 		return (false);
 	s_config->radius /= 2.0;
-	if (parse_material_format(splitted_data[4], splitted_data[5],
-			splitted_data[6], m_config) == false)
+	if (parse_material_format(splitted_data[3], splitted_data[4],
+			splitted_data[5], m_config) == false)
 		return (false);
 	return (true);
 }
@@ -39,10 +39,16 @@ bool	set_sphere(char **splitted_data, t_scene *scene)
 	if (!sphere)
 		return (false);
 	if (create_material(&m_config, &m) == false)
+	{
+		free(sphere);
 		return (false);
+	}
 	if (hittable_lst_add(scene->objects, create_sphere(sphere, s_config.center,
 				s_config.radius, m)) == false)
+	{
+		free(sphere);
 		return (false);
+	}
 	return (true);
 }
 
@@ -59,7 +65,7 @@ static bool	parse_plane_config(char **splitted_data, t_plane_config *p_config, t
 		return (false);
 	if (fabs(vec_norm_squared(p_config->normal) - 1.0) > EPS)
 		return (false);
-	if (parse_material_format(splitted_data[3], splitted_data[4], splitted_data[5], m_config))
+	if (parse_material_format(splitted_data[3], splitted_data[4], splitted_data[5], m_config) == false)
 		return (false);
 	return (true);
 }
@@ -77,8 +83,14 @@ bool	set_plane(char **splitted_data, t_scene *scene)
 	if (!plane)
 		return (false);
 	if (create_material(&m_config, &m) == false)
+	{
+		free(plane);
 		return (false);
+	}
 	if (hittable_lst_add(scene->objects, create_plane(plane, p_config.point, p_config.normal, m)) == false)
+	{
+		free(plane);
 		return (false);
+	}
 	return (true);
 }

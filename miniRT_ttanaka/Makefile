@@ -1,7 +1,7 @@
 NAME		=	miniRT
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 
 RM			=	rm -f
 RM_DIR		=	rm -rf
@@ -44,6 +44,7 @@ SRCS_PARSE	=	$(SRC_DIR)/parse/parse.c \
                 $(SRC_DIR)/parse/parse_utils.c \
                 $(SRC_DIR)/parse/parse_color.c \
                 $(SRC_DIR)/parse/parse_coords.c \
+                $(SRC_DIR)/parse/parse_error_print.c \
                 $(SRC_DIR)/parse/parse_double.c \
                 $(SRC_DIR)/parse/parse_material.c \
                 $(SRC_DIR)/parse/set_env.c \

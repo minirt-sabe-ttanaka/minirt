@@ -48,6 +48,6 @@ bool	set_sphere(char **splitted_data, t_scene *scene);
 bool	set_plane(char **splitted_data, t_scene *scene);
 bool	set_cylinder(char **splitted_data, t_scene *scene);
 
-void	notify_err_line_num(size_t line_num);
+void	notify_err_line_content(char *s);
 
 #endif

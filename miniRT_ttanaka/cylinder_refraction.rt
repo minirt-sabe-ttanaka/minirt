@@ -1,0 +1,24 @@
+# ----------------------------------------
+# Scene: Cylinder Orientation & Refraction
+# Description: Checking cylinder caps and axis transformation
+# ----------------------------------------
+
+A 0.1 255,255,255
+C 0,3,12 0,0,-1 60
+L 10,10,10 0.8 255,255,255
+
+# Floor
+pl 0,0,0 0,1,0 50,50,50 lambertian
+
+# 1. Vertical Red Cylinder (Lambertian)
+cy -4,2,0 0,1,0 2.0 4.0 255,50,50 lambertian
+
+# 2. Horizontal Blue Cylinder (Metal) - pointing X axis
+cy 0,1,0 1,0,0 2.0 4.0 50,50,255 metal 0.2
+
+# 3. Tilted Glass Cylinder (Dielectric) - pointing Z axis (towards camera)
+# Looking through the cap
+cy 4,2,2 0,0,1 2.0 4.0 255,255,255 dielectric 1.5
+
+# Background object to see through the glass cylinder
+sp 4,2,-5 4.0 255,255,0 lambertian
