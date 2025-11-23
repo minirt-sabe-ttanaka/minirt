@@ -1,6 +1,4 @@
-#include "../inc/minirt.h"
-
-void my_mlx_pixel_put(t_scene *scene, int x, int y, int rgb);
+#include "plot.h"
 
 void my_mlx_pixel_put(t_scene *scene, int x, int y, int rgb)
 {

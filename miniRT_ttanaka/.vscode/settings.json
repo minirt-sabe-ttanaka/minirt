@@ -20,6 +20,7 @@
         "bvh.h": "c",
         "stdio.h": "c",
         "ratio": "c",
-        "material.h": "c"
+        "material.h": "c",
+        "raytracing.h": "c"
     }
 }
