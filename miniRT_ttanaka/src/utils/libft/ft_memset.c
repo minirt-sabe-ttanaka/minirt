@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 13:23:58 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:10:18 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:20:20 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

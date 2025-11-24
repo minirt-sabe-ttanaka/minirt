@@ -1,4 +1,16 @@
-#include "raytracing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raytracing_thread.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:21:08 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:21:09 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "engine/raytracing.h"
 
 int		take_new_line(t_renderer *r);
 void	*render_thread(void *arg);

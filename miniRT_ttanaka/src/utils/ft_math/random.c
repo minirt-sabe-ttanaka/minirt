@@ -1,4 +1,16 @@
-#include "utils/ft_math.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   random.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:19:30 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:19:31 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "core/utils/ft_math.h"
 
 unsigned int	init_seed(void);
 int				my_rand(unsigned int *seed);

@@ -6,13 +6,10 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 00:58:27 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:08:15 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:20:20 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
-int	ft_isspace(char c)
-{
-	return (c == ' ' || (9 <= c && c <= 13));
-}
+int	ft_isspace(char c) { return (c == ' ' || (9 <= c && c <= 13)); }

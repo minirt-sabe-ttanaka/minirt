@@ -1,4 +1,16 @@
-#include "hittable/hittable_lst.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hittable_lst.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:24:08 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:24:09 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/hittable_lst.h"
 
 void		hittable_lst_init(t_hittable_lst *lst);
 int			hittable_lst_add(t_hittable_lst *lst, t_hittable object);

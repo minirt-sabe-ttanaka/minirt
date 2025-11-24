@@ -1,4 +1,16 @@
-#include "hittable/bvh.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bvh_build_info.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:16:40 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:16:41 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/bvh.h"
 
 t_aabb				calc_centroid_bbox_in_given_range(t_bvh_build_info *info_lst,
 						t_range *rangea);

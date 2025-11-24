@@ -1,4 +1,4 @@
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 t_power_table	*get_table(void);
 void			normalize_val(t_u128 *val, int *exp);

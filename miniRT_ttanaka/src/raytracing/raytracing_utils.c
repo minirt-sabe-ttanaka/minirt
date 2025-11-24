@@ -1,4 +1,16 @@
-#include "raytracing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raytracing_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:21:14 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:21:17 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "engine/raytracing.h"
 
 void		display_progress_bar(int current, int total);
 t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,

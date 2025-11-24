@@ -1,4 +1,16 @@
-#include "hittable/bvh.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bvh_builder.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:16:58 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:25:54 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/bvh.h"
 
 static t_bvh_build_node	*_build_bvh_recursive(t_hittable_lst *objects,
 							t_bvh_build_info *info_lst, t_range *range,
@@ -8,8 +20,6 @@ static int				_flatten_bvh(t_linear_bvh *linear_bvh,
 							t_bvh_build_node *build_node, int *offset);
 t_linear_bvh			*flatten_bvh(t_bvh_build *bvh_build,
 							t_hittable_lst *objects);
-
-#include <stdio.h>
 
 static t_bvh_build_node	*_build_bvh_recursive(t_hittable_lst *objects,
 		t_bvh_build_info *info_lst, t_range *range, int *count)

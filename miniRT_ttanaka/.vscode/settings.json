@@ -24,6 +24,10 @@
         "raytracing.h": "c",
         "ios": "c",
         "ray.h": "c",
-        "base_hittable.h": "c"
+        "base_hittable.h": "c",
+        "scene.h": "c",
+        "stdalign.h": "c",
+        "math.h": "c",
+        "struct.h": "c"
     }
 }

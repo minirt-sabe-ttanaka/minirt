@@ -1,4 +1,16 @@
-#include "parse.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:22:19 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:22:23 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "engine/parse.h"
 
 static uint8_t	a2uint8(char *s, bool *success);
 bool			parse_color_format(char *s, t_color3 *color);

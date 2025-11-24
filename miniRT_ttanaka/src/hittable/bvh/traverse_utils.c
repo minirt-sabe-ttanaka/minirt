@@ -1,4 +1,16 @@
-#include "hittable/bvh.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   traverse_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:17:27 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:17:27 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/bvh.h"
 
 t_bvh_traversal	init_traversal_info(const void *object, const t_ray *r,
 					t_double_range range, t_hit_record *rec);
@@ -29,7 +41,7 @@ t_bvh_traversal	init_traversal_info(const void *object, const t_ray *r,
 void	hit_leaf_objects(t_bvh_traversal *info, const t_linear_bvh_node *node)
 {
 	int				i;
-	int 			end_idx;
+	int				end_idx;
 	t_hittable		*hittable;
 	t_hit_record	tmp_rec;
 
@@ -38,8 +50,8 @@ void	hit_leaf_objects(t_bvh_traversal *info, const t_linear_bvh_node *node)
 	while (i < end_idx)
 	{
 		hittable = &(info->bvh->objects->objects[i]);
-		if (hittable->vtable->hit(hittable->object, info->r, (t_double_range){info->t_min,
-				info->closest_so_far}, &tmp_rec))
+		if (hittable->vtable->hit(hittable->object, info->r,
+				(t_double_range){info->t_min, info->closest_so_far}, &tmp_rec))
 		{
 			info->closest_so_far = tmp_rec.t;
 			*(info->rec) = tmp_rec;

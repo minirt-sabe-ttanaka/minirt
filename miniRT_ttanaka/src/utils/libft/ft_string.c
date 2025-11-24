@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:40:33 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/11 20:18:27 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:20:20 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 char	*ft_strrchr(const char *s, int c);
 int		ft_strcmp(char *s1, char *s2);

@@ -1,14 +1,24 @@
-#include "hittable/bvh.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bvh_interface.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:17:08 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:17:09 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/bvh.h"
 
 void			destroy_bvh_build(t_bvh_build *bvh_build);
 t_linear_bvh	*bvh_init(t_hittable_lst *objects);
-bool			bvh_hit(const void *object, const t_ray *r, t_double_range range,
-					t_hit_record *rec);
+bool			bvh_hit(const void *object, const t_ray *r,
+					t_double_range range, t_hit_record *rec);
 t_hittable		create_hittable_bvh(t_linear_bvh *bvh);
 bool			convert_lst_2_bvh(t_hittable_lst *lst, t_hittable **bvh);
 bool			bvh_bbox(const void *object, t_aabb *output_bbox);
-
-#include <stdio.h>
 
 t_linear_bvh	*bvh_init(t_hittable_lst *objects)
 {
@@ -35,7 +45,8 @@ bool	bvh_hit(const void *object, const t_ray *r, t_double_range range,
 	while (true)
 	{
 		node = &info.bvh->bvh_nodes[cur_node_idx];
-		if (aabb_hit(&node->bbox, r, (t_double_range){range.min, info.closest_so_far}))
+		if (aabb_hit(&node->bbox, r, (t_double_range){range.min,
+				info.closest_so_far}))
 		{
 			if (node->n_hittables > 0)
 				hit_leaf_objects(&info, node);

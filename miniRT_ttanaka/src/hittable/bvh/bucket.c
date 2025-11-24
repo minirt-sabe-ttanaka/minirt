@@ -1,4 +1,16 @@
-#include "hittable/bvh.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bucket.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:16:45 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:16:46 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/bvh.h"
 
 static void	_init_bucket(t_bucket *bucket);
 void		init_bucket_lst(t_bucket *bucket, int size);

@@ -1,4 +1,16 @@
-#include "parse.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_objs_1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:22:34 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:22:35 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "engine/parse.h"
 
 static bool	parse_sphere_config(char **splitted_data, t_sphere_config *s_config, t_material_config *m_config);
 bool		set_sphere(char **splitted_data, t_scene *scene);

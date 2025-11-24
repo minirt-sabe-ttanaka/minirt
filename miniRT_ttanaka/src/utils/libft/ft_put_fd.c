@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 21:14:01 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/23 14:00:41 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:20:20 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);

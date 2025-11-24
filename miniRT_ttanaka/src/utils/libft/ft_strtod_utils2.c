@@ -1,4 +1,4 @@
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 void	init_power_table(void);
 void	calc_product(t_calc_ctx *ctx, uint64_t mant, int exp10);

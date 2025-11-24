@@ -1,4 +1,16 @@
-#include "hittable/shape.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sphere.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:23:57 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:23:58 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/shape.h"
 
 t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
 				t_material mat);

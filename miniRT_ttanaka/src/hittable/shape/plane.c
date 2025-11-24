@@ -1,4 +1,16 @@
-#include "hittable/shape.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:23:42 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:23:43 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/shape.h"
 
 t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 				t_material mat);

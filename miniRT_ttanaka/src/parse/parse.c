@@ -1,8 +1,20 @@
-#include "parse.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:22:31 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:22:32 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-bool		check_extension(char *path);
-bool		parse_file(char *path, t_scene *scene);
-bool		create_scene(char *path, t_scene *scene);
+#include "engine/parse.h"
+
+bool	check_extension(char *path);
+bool	parse_file(char *path, t_scene *scene);
+bool	create_scene(char *path, t_scene *scene);
 
 bool	check_extension(char *path)
 {

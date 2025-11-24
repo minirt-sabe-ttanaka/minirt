@@ -1,4 +1,4 @@
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 void	parse_scientific(const char **s, int *exp);
 double	ft_strtod(const char *str);

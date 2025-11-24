@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "engine/parse.h"
 
 bool parse_material_format(char *color, char *type, char *param, t_material_config *config);
 

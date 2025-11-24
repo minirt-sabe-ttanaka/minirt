@@ -1,4 +1,16 @@
-#include "utils/vector.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_random.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:20:43 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:20:44 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "core/utils/vector.h"
 
 t_vec3			random_in_unit_sphere(unsigned int *seed);
 t_vec3			random_unit_vector(unsigned int *seed);

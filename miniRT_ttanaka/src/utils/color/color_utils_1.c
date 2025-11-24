@@ -1,4 +1,16 @@
-#include "utils/color.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_utils_1.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:19:40 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:19:41 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "core/utils/color.h"
 
 t_color3	color_scale(t_color3 c, double s);
 t_color3	color_add(t_color3 a, t_color3 b);

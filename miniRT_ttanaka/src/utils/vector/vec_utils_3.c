@@ -1,4 +1,16 @@
-#include "utils/vector.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_utils_3.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:20:48 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:20:49 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "core/utils/vector.h"
 
 bool		vec_near_zero(t_vec3 v);
 t_vec3		vec_reflect(t_vec3 v, t_vec3 n);

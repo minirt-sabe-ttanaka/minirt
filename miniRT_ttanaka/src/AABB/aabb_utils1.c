@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 02:25:41 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/24 22:19:12 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/24 23:59:38 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "aabb.h"
+#include "scene/aabb.h"
 #include <stdio.h>
 
 bool		aabb_hit(const t_aabb *bbox, const t_ray *r, t_double_range range);

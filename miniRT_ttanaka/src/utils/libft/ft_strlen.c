@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 13:24:34 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:08:56 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:20:20 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 size_t	ft_strlen(const char *s)
 {

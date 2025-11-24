@@ -1,16 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:00:36 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:15:53 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "camera.h"
-# include "hittable.h"
-# include "material.h"
+# include "core/ray.h"
+# include "core/utils.h"
+# include "engine/camera.h"
+# include "engine/parse.h"
+# include "engine/raytracing.h"
+# include "engine/scene.h"
 # include "mlx.h"
-# include "parse.h"
-# include "ray.h"
-# include "raytracing.h"
-# include "scene.h"
-# include "shape.h"
-# include "utils.h"
+# include "scene/hittable.h"
+# include "scene/hittable/shape.h"
+# include "scene/material.h"
+# include "struct.h"
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>

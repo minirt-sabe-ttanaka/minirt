@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 13:23:37 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:08:58 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:19:56 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 int	ft_isdigit(int c)
 {

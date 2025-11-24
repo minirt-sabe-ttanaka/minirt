@@ -1,4 +1,16 @@
-#include "hittable/shape.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   destroy.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:17:46 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:17:48 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable/shape.h"
 
 void	cylinder_destroy(void *object);
 void	plane_destroy(void *object);

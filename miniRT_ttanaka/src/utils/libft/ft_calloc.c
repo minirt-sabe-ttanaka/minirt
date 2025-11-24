@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 13:23:24 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/12 18:20:06 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:19:53 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

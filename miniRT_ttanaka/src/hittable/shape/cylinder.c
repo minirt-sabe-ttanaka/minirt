@@ -1,6 +1,19 @@
-#include "hittable/shape.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:17:40 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:17:40 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-bool		cylinder_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec);
+#include "scene/hittable/shape.h"
+
+bool		cylinder_hit(const void *object, const t_ray *r,
+				t_double_range range, t_hit_record *rec);
 t_hittable	create_cylinder(t_cylinder *cy, t_cylinder_config *config,
 				t_material mat);
 bool		cylinder_bbox(const void *object, t_aabb *output_bbox);
@@ -49,7 +62,8 @@ static void	get_cylinder_normal(t_hit_record *rec, const t_cylinder *cy,
 	set_face_normal(rec, r, &outward_normal);
 }
 
-bool	cylinder_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec)
+bool	cylinder_hit(const void *object, const t_ray *r, t_double_range range,
+		t_hit_record *rec)
 {
 	const t_cylinder	*cy = (const t_cylinder *)object;
 	double				roots[2];

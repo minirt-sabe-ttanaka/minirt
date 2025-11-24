@@ -1,7 +1,9 @@
 NAME		=	miniRT
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -O3
+DEBUG_FLAGS =   -g -fsanitize=address
+
 LDLIBS		=  	-lpthread
 
 RM			=	rm -f
@@ -24,11 +26,6 @@ SRCS_RAYTRACING =	$(SRC_DIR)/raytracing/raytracing.c \
 					$(SRC_DIR)/raytracing/raytracing_thread.c \
 					$(SRC_DIR)/raytracing/raytracing_utils.c 
 
-SRCS_SHAPE	=	$(SRC_DIR)/shape/cylinder.c \
-				$(SRC_DIR)/shape/plane.c \
-				$(SRC_DIR)/shape/sphere.c \
-				$(SRC_DIR)/shape/destroy.c 
-
 SRCS_MAT	=	$(SRC_DIR)/material/dielectric.c \
 				$(SRC_DIR)/material/diffuse_light.c \
 				$(SRC_DIR)/material/lambertian.c \
@@ -43,10 +40,14 @@ SRCS_HIT	=	$(SRC_DIR)/hittable/hittable_lst.c \
 				$(SRC_DIR)/hittable/bvh/bvh_interface.c \
 				$(SRC_DIR)/hittable/bvh/partition.c \
 				$(SRC_DIR)/hittable/bvh/sah.c \
-				$(SRC_DIR)/hittable/bvh/traverse_utils.c
+				$(SRC_DIR)/hittable/bvh/traverse_utils.c \
+				$(SRC_DIR)/hittable/shape/cylinder.c \
+				$(SRC_DIR)/hittable/shape/plane.c \
+				$(SRC_DIR)/hittable/shape/sphere.c \
+				$(SRC_DIR)/hittable/shape/destroy.c \
 
-SRC_AABB	=	$(SRC_DIR)/AABB/aabb_utils1.c \
-				$(SRC_DIR)/AABB/aabb_utils2.c \
+SRCS_AABB	=	$(SRC_DIR)/AABB/aabb_utils1.c \
+				$(SRC_DIR)/AABB/aabb_utils2.c 
 
 SRCS_PARSE	=	$(SRC_DIR)/parse/parse.c \
 				$(SRC_DIR)/parse/parse_utils.c \
@@ -85,8 +86,8 @@ SRCS_LIBFT	=	$(SRC_DIR)/utils/libft/ft_atoi.c \
 				$(SRC_DIR)/utils/libft/ft_strtod_utils1.c \
 				$(SRC_DIR)/utils/libft/ft_strtod_utils2.c
 
-SRCS		=	$(SRCS_MAIN) $(SRCS_RAY) $(SRCS_RAYTRACING) $(SRCS_SHAPE) $(SRCS_MAT) \
-				$(SRCS_HIT) $(SRC_AABB) $(SRCS_PARSE) $(SRCS_UTILS) $(SRCS_LIBFT)
+SRCS		=	$(SRCS_MAIN) $(SRCS_RAY) $(SRCS_RAYTRACING) $(SRCS_MAT) \
+				$(SRCS_HIT) $(SRCS_AABB) $(SRCS_PARSE) $(SRCS_UTILS) $(SRCS_LIBFT)
 
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
@@ -95,25 +96,25 @@ GNL_SRCS	=	$(GNL_DIR)/get_next_line.c \
 				$(GNL_DIR)/get_next_line_utils.c
 GNL_OBJS	=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(GNL_SRCS))
 
-HEADERS		=	$(INC_DIR)/aabb.h \
-				$(INC_DIR)/camera.h \
-				$(INC_DIR)/hittable.h \
-				$(INC_DIR)/material.h \
-				$(INC_DIR)/minirt.h \
-				$(INC_DIR)/parse.h \
-				$(INC_DIR)/plot.h \
-				$(INC_DIR)/ray.h \
-				$(INC_DIR)/raytracing.h \
-				$(INC_DIR)/scene.h \
-				$(INC_DIR)/shape.h \
-				$(INC_DIR)/utils.h \
-				$(INC_DIR)/hittable/base_hittable.h \
-				$(INC_DIR)/hittable/bvh.h \
-				$(INC_DIR)/hittable/hittable_lst.h \
-				$(INC_DIR)/utils/color.h \
-				$(INC_DIR)/utils/ft_math.h \
-				$(INC_DIR)/utils/libft.h \
-				$(INC_DIR)/utils/vector.h \
+HEADERS		=	$(INC_DIR)/minirt.h \
+				$(INC_DIR)/struct.h \
+				$(INC_DIR)/core/utils/color.h \
+				$(INC_DIR)/core/utils/ft_math.h \
+				$(INC_DIR)/core/utils/libft.h \
+				$(INC_DIR)/core/utils/vector.h \
+				$(INC_DIR)/core/ray.h \
+				$(INC_DIR)/core/utils.h \
+				$(INC_DIR)/engine/camera.h \
+				$(INC_DIR)/engine/parse.h \
+				$(INC_DIR)/engine/plot.h \
+				$(INC_DIR)/engine/raytracing.h \
+				$(INC_DIR)/engine/scene.h \
+				$(INC_DIR)/scene/hittable.h \
+				$(INC_DIR)/scene/hittable/base_hittable.h \
+				$(INC_DIR)/scene/hittable/bvh.h \
+				$(INC_DIR)/scene/hittable/hittable_lst.h \
+				$(INC_DIR)/scene/hittable/shape.h \
+				$(INC_DIR)/scene/material.h \
 				$(GNL_DIR)/get_next_line.h
 
 MLX_PATH	=	minilibx
@@ -125,6 +126,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(GNL_OBJS) $(MLX_LIB)
 	$(CC) $(CFLAGS)  $(OBJS) $(GNL_OBJS) $(INCLUDES) $(MLX_FLAGS) $(LDLIBS) -o $(NAME)
+
+debug: fclean
+	make CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)" all
 
 $(MLX_LIB):
 	make -C $(MLX_PATH)
@@ -147,4 +151,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug

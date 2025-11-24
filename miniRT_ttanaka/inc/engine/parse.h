@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:02:49 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:15:32 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSE_H
 # define PARSE_H
 
 # include "../get_next_line/get_next_line.h"
-# include "hittable.h"
-# include "material.h"
 # include "scene.h"
-# include "shape.h"
+# include "scene/hittable.h"
+# include "scene/hittable/shape.h"
+# include "scene/material.h"
+# include "struct.h"
 # include <fcntl.h>
 # include <stdlib.h>
 

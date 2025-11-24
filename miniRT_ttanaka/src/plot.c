@@ -1,4 +1,4 @@
-#include "plot.h"
+#include "engine/plot.h"
 
 void my_mlx_pixel_put(t_scene *scene, int x, int y, int rgb)
 {

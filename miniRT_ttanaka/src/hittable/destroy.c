@@ -1,4 +1,16 @@
-#include "hittable.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   destroy.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:24:04 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:24:05 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/hittable.h"
 
 static void	destroy_bvh_build_node_recursive(t_bvh_build_node *node);
 void		destroy_bvh_build(t_bvh_build *bvh_build);

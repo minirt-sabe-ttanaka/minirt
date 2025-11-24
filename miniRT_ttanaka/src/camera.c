@@ -1,4 +1,4 @@
-#include "camera.h"
+#include "engine/camera.h"
 
 void			camera_init(t_camera *cam, t_camera_config *config);
 t_ray			camera_get_ray(const t_camera *cam, double u, double v);

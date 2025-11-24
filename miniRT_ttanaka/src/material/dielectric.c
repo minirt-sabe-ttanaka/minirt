@@ -1,4 +1,16 @@
-#include "material.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dielectric.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:23:06 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:23:07 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/material.h"
 
 bool		dielectric_scatter(const void *object, t_scatter_ctx *ctx);
 t_material	create_dielectric(t_dielectric *d, double ref_idx);

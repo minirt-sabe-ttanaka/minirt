@@ -6,11 +6,11 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 13:23:09 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/22 02:09:21 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/25 00:19:49 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/libft.h"
+#include "core/utils/libft.h"
 
 static int	is_overflow(int sign, unsigned long num, unsigned long x)
 {

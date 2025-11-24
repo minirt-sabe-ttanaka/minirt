@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bvh.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:00:30 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:25:59 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BVH_H
 # define BVH_H
 
-# include "hittable/base_hittable.h"
-# include "hittable/hittable_lst.h"
+# include "base_hittable.h"
+# include "hittable_lst.h"
+# include "struct.h"
+# include <stdio.h>
 
 typedef struct s_range
 {

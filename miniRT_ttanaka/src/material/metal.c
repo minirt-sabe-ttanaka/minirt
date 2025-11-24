@@ -1,4 +1,16 @@
-#include "material.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   metal.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:23:12 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:23:13 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scene/material.h"
 
 bool		metal_scatter(const void *object, t_scatter_ctx *ctx);
 t_material	create_metal(t_metal *metal, t_color3 albedo, double fuzz);

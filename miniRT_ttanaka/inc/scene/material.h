@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   material.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/25 00:00:23 by ttanaka           #+#    #+#             */
+/*   Updated: 2025/11/25 00:16:04 by ttanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MATERIAL_H
 # define MATERIAL_H
 
-# include "ray.h"
-# include "utils.h"
+# include "core/ray.h"
+# include "core/utils.h"
+# include "struct.h"
 
 # define SHADOW_BIAS 1e-2
-
-typedef struct s_hit_record	t_hit_record;
 
 typedef struct s_scatter_ctx
 {
