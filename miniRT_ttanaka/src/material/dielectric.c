@@ -43,7 +43,7 @@ bool	dielectric_scatter(const void *object, t_scatter_ctx *ctx)
 t_material	create_dielectric(t_dielectric *d, double ref_idx)
 {
 	static const t_material_vtable	dielectric_vtable = {dielectric_scatter,
-			material_default_emitted};
+			material_default_emitted, destroy_default_material };
 	t_material						m;
 
 	d->ref_idx = ref_idx;

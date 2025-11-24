@@ -62,8 +62,8 @@ t_bvh_build	*build_bvh_recursive(t_hittable_lst *objects)
 	bvh_build->n_nodes = 0;
 	root = _build_bvh_recursive(objects, info_lst, &(t_range){0, objects->size},
 			&(bvh_build->n_nodes));
-	printf("BVH Nodes created: %d\n", bvh_build->n_nodes);
 	free(info_lst);
+	printf("BVH Nodes created: %d\n", bvh_build->n_nodes);
 	bvh_build->root = root;
 	return (bvh_build);
 }

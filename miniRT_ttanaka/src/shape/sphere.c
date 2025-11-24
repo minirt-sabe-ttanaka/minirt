@@ -9,7 +9,8 @@ bool		sphere_bbox(const void *object, t_aabb *output_bbox);
 t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
 		t_material mat)
 {
-	static const t_hittable_vtable	sphere_vtable = {sphere_hit, sphere_bbox};
+	static const t_hittable_vtable	sphere_vtable = {sphere_hit, sphere_bbox,
+			sphere_destroy};
 	t_hittable						h;
 
 	s->center = center;

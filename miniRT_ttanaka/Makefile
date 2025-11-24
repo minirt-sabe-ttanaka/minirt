@@ -26,14 +26,17 @@ SRCS_RAYTRACING =	$(SRC_DIR)/raytracing/raytracing.c \
 
 SRCS_SHAPE	=	$(SRC_DIR)/shape/cylinder.c \
 				$(SRC_DIR)/shape/plane.c \
-				$(SRC_DIR)/shape/sphere.c
+				$(SRC_DIR)/shape/sphere.c \
+				$(SRC_DIR)/shape/destroy.c 
 
 SRCS_MAT	=	$(SRC_DIR)/material/dielectric.c \
 				$(SRC_DIR)/material/diffuse_light.c \
 				$(SRC_DIR)/material/lambertian.c \
-				$(SRC_DIR)/material/metal.c
+				$(SRC_DIR)/material/metal.c \
+				$(SRC_DIR)/material/destroy.c
 
 SRCS_HIT	=	$(SRC_DIR)/hittable/hittable_lst.c \
+				$(SRC_DIR)/hittable/destroy.c \
 				$(SRC_DIR)/hittable/bvh/bucket.c \
 				$(SRC_DIR)/hittable/bvh/bvh_build_info.c \
 				$(SRC_DIR)/hittable/bvh/bvh_builder.c \

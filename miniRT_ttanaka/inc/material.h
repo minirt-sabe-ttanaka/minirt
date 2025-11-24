@@ -22,6 +22,7 @@ typedef struct s_material_vtable
 	bool					(*scatter)(const void *object, t_scatter_ctx *ctx);
 	t_color3				(*emitted)(const void *object, double u, double v,
 						const t_point3 *p);
+	void					(*destroy)(void **object_ptr);
 }							t_material_vtable;
 
 typedef enum e_material_type
@@ -81,6 +82,8 @@ void						set_face_normal(t_hit_record *rec, const t_ray *r,
 
 t_color3					material_default_emitted(const void *object,
 								double u, double v, const t_point3 *p);
+
+void						destroy_default_material(void **object_ptr);
 
 bool						lambertian_scatter(const void *object,
 								t_scatter_ctx *ctx);

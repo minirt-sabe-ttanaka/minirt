@@ -24,7 +24,7 @@ t_color3	diffuse_light_emitted(const void *object, double u, double v,
 t_material	create_diffuse_light(t_diffuse_light *l, t_color3 emit_color)
 {
 	static const t_material_vtable	vtable = {diffuse_light_scatter,
-			diffuse_light_emitted };
+			diffuse_light_emitted, destroy_default_material };
 	t_material						m;
 
 	l->emit_color = emit_color;

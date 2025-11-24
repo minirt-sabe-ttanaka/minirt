@@ -10,7 +10,7 @@ t_hittable	create_cylinder(t_cylinder *cy, t_cylinder_config *config,
 		t_material mat)
 {
 	static const t_hittable_vtable	cylinder_vtable = {cylinder_hit,
-			cylinder_bbox};
+			cylinder_bbox, cylinder_destroy};
 	t_hittable						h;
 
 	cy->center = config->center;

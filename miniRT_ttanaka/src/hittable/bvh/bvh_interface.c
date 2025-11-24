@@ -10,12 +10,6 @@ bool			bvh_bbox(const void *object, t_aabb *output_bbox);
 
 #include <stdio.h>
 
-void	destroy_bvh_build(t_bvh_build *bvh_build)
-{
-	(void)bvh_build;
-	printf("TODO: make destroy_bvh_build\n");
-}
-
 t_linear_bvh	*bvh_init(t_hittable_lst *objects)
 {
 	t_bvh_build		*bvh_build;
@@ -58,7 +52,7 @@ bool	bvh_hit(const void *object, const t_ray *r, double t_min, double t_max,
 t_hittable	create_hittable_bvh(t_linear_bvh *bvh)
 {
 	t_hittable						h;
-	static const t_hittable_vtable	lst_vtable = {bvh_hit, bvh_bbox};
+	static const t_hittable_vtable	lst_vtable = {bvh_hit, bvh_bbox, NULL};
 
 	h.object = bvh;
 	h.vtable = &lst_vtable;

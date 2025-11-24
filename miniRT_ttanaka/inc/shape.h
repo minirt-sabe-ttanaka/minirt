@@ -114,4 +114,8 @@ t_hittable		create_cylinder(t_cylinder *cy, t_cylinder_config *config,
 bool			cylinder_hit(const void *object, const t_ray *r, double t_min,
 					double t_max, t_hit_record *rec);
 
+void			cylinder_destroy(void *object);
+void			plane_destroy(void *object);
+void			sphere_destroy(void *object);
+
 #endif

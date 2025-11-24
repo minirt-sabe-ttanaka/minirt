@@ -21,7 +21,7 @@ bool	metal_scatter(const void *object, t_scatter_ctx *ctx)
 t_material	create_metal(t_metal *metal, t_color3 albedo, double fuzz)
 {
 	static const t_material_vtable	metal_vtable = {metal_scatter,
-			material_default_emitted};
+			material_default_emitted, destroy_default_material };
 	t_material						m;
 
 	metal->albedo = albedo;

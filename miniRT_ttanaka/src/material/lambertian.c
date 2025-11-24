@@ -21,7 +21,7 @@ bool	lambertian_scatter(const void *object, t_scatter_ctx *ctx)
 t_material	create_lambertian(t_lambertian *l, t_color3 albedo)
 {
 	static const t_material_vtable lambertian_vtable = {lambertian_scatter,
-		material_default_emitted};
+		material_default_emitted, destroy_default_material };
 	t_material m;
 
 	l->albedo = albedo;

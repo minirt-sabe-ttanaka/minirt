@@ -130,4 +130,6 @@ void						push_child_nodes_to_stack(t_bvh_traversal *info,
 								const t_linear_bvh_node *node,
 								int cur_node_idx);
 
+void						destroy_bvh_build(t_bvh_build *bvh_build);
+
 #endif

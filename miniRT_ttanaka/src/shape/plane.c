@@ -9,7 +9,8 @@ bool		plane_bbox(const void *object, t_aabb *output_bbox);
 t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 		t_material mat)
 {
-	static const t_hittable_vtable	plane_vtable = {plane_hit, plane_bbox};
+	static const t_hittable_vtable	plane_vtable = {plane_hit, plane_bbox,
+			plane_destroy};
 	t_hittable						h;
 
 	p->point = point;
