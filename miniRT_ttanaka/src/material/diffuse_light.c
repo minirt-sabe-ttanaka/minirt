@@ -1,20 +1,14 @@
 #include "material.h"
 
-bool		diffuse_light_scatter(const void *object, const t_ray *r_in,
-				const t_hit_record *rec, t_color3 *attenuation,
-				t_ray *scattered);
+bool		diffuse_light_scatter(const void *object, t_scatter_ctx *ctx);
 t_color3	diffuse_light_emitted(const void *object, double u, double v,
 				const t_point3 *p);
 t_material	create_diffuse_light(t_diffuse_light *l, t_color3 emit_color);
 
-bool	diffuse_light_scatter(const void *object, const t_ray *r_in,
-		const t_hit_record *rec, t_color3 *attenuation, t_ray *scattered)
+bool	diffuse_light_scatter(const void *object, t_scatter_ctx *ctx)
 {
 	(void)object;
-	(void)r_in;
-	(void)rec;
-	(void)attenuation;
-	(void)scattered;
+	(void)ctx;
 	return (false);
 }
 

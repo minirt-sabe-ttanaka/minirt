@@ -1,48 +1,50 @@
 #include "material.h"
 
-bool		dielectric_scatter(const void *object, const t_ray *r_in,
-				const t_hit_record *rec, t_color3 *attenuation,
-				t_ray *scattered);
+bool		dielectric_scatter(const void *object, t_scatter_ctx *ctx);
 t_material	create_dielectric(t_dielectric *d, double ref_idx);
 
-bool	dielectric_scatter(const void *object, const t_ray *r_in,
-		const t_hit_record *rec, t_color3 *attenuation, t_ray *scattered)
+static bool should_reflect(double ratio, double cos_theta, unsigned int *seed)
 {
-	const t_dielectric	*mat = (const t_dielectric *)object;
-	double				etai_over_etat;
+	double	sin_theta;
+	double	prob;
+
+	sin_theta = sqrt(1.0 - cos_theta * cos_theta);
+	if (ratio * sin_theta > 1.0)
+		return (true);
+	prob = schlick(cos_theta, ratio);
+	if (random_double(seed) < prob)
+		return (true);
+	return (false);
+}
+
+bool	dielectric_scatter(const void *object, t_scatter_ctx *ctx)
+{
+	const t_dielectric	*mat;
+	double				ratio;
 	t_vec3				unit_dir;
 	double				cos_theta;
-	double				sin_theta;
-	double				reflect_prob;
+	t_vec3				dir;
 
-	*attenuation = color_init(1.0, 1.0, 1.0);
-	if (rec->front_face)
-		etai_over_etat = 1.0 / mat->ref_idx;
+	mat = (const t_dielectric *)object;
+	ctx->attenuation = color_init(1.0, 1.0, 1.0);
+	unit_dir = vec_normalize(ctx->r_in->dir);
+	ratio = mat->ref_idx;
+	if (ctx->rec->front_face)
+		ratio = 1.0 / mat->ref_idx;
+	cos_theta = fmin(vec_dot(vec_scale(unit_dir, -1), ctx->rec->normal), 1.0);
+	if (should_reflect(ratio, cos_theta, ctx->seed))
+		dir = vec_reflect(unit_dir, ctx->rec->normal);
 	else
-		etai_over_etat = mat->ref_idx;
-	unit_dir = vec_normalize(r_in->dir);
-	cos_theta = fmin(vec_dot(vec_scale(unit_dir, -1), rec->normal), 1.0);
-	sin_theta = sqrt(1.0 - cos_theta * cos_theta);
-	if (etai_over_etat * sin_theta > 1.0)
-	{
-		*scattered = ray_init(rec->p, vec_reflect(unit_dir, rec->normal));
-		return (true);
-	}
-	reflect_prob = schlick(cos_theta, etai_over_etat);
-	if (random_double() < reflect_prob)
-	{
-		*scattered = ray_init(rec->p, vec_reflect(unit_dir, rec->normal));
-		return (true);
-	}
-	*scattered = ray_init(rec->p, vec_refract(unit_dir, rec->normal,
-				etai_over_etat));
+		dir = vec_refract(unit_dir, ctx->rec->normal, ratio);
+	ctx->scattered = ray_init(ctx->rec->p, dir);
 	return (true);
 }
 
 t_material	create_dielectric(t_dielectric *d, double ref_idx)
 {
-	static const t_material_vtable dielectric_vtable = {dielectric_scatter, material_default_emitted};
-	t_material m;
+	static const t_material_vtable	dielectric_vtable = {dielectric_scatter,
+			material_default_emitted};
+	t_material						m;
 
 	d->ref_idx = ref_idx;
 	m.object = d;

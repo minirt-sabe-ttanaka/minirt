@@ -1,23 +1,20 @@
 #include "material.h"
 
-bool		lambertian_scatter(const void *object, const t_ray *r_in,
-				const t_hit_record *rec, t_color3 *attenuation,
-				t_ray *scattered);
+bool		lambertian_scatter(const void *object, t_scatter_ctx *ctx);
 t_material	create_lambertian(t_lambertian *l, t_color3 albedo);
 
-bool	lambertian_scatter(const void *object, const t_ray *r_in,
-		const t_hit_record *rec, t_color3 *attenuation, t_ray *scattered)
+bool	lambertian_scatter(const void *object, t_scatter_ctx *ctx)
 {
-	const t_lambertian	*mat = (const t_lambertian *)object;
+	const t_lambertian	*mat;
 	t_vec3				scatter_dir;
 
-	(void)r_in;
-	scatter_dir = vec_add(rec->normal, random_unit_vector());
+	mat = (const t_lambertian *)object;
+	scatter_dir = vec_add(ctx->rec->normal, random_unit_vector(ctx->seed));
 	if (vec_near_zero(scatter_dir))
-		scatter_dir = rec->normal;
-	*scattered = ray_init(vec_add(rec->p, vec_scale(rec->normal, SHADOW_BIAS)),
+		scatter_dir = ctx->rec->normal;
+	ctx->scattered = ray_init(vec_add(ctx->rec->p, vec_scale(ctx->rec->normal, SHADOW_BIAS)),
 			scatter_dir);
-	*attenuation = mat->albedo;
+	ctx->attenuation = mat->albedo;
 	return (true);
 }
 

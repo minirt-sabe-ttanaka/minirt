@@ -2,8 +2,8 @@
 
 static int	init_scene(t_scene *scene)
 {
-	scene->screen_width = 800;
-	scene->screen_height = 450;
+	scene->screen_width = WIDTH;
+	scene->screen_height = HEIGHT;
 	scene->mlx = mlx_init();
 	scene->win = mlx_new_window(scene->mlx, scene->screen_width,
 			scene->screen_height, "miniRT");

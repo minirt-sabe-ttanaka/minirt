@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 20:23:47 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/23 02:33:15 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 22:21:07 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ bool			ft_solve_quadratic_equation(double a, double b, double c,
 					double *res);
 
 unsigned int	init_seed(void);
-int				my_rand(void);
-double			random_double(void);
-double			random_double_range(double min, double max);
+int				my_rand(unsigned int *seed);
+double			random_double(unsigned int *seed);
+double			random_double_range(unsigned int *seed, double min, double max);
 
 double			ft_clamp(double x, double min, double max);
 

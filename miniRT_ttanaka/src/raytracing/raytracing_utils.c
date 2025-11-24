@@ -1,6 +1,14 @@
 #include "raytracing.h"
 
-static void	display_progress_bar(int current, int total)
+void		display_progress_bar(int current, int total);
+t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
+				t_color3 albedo);
+t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
+				unsigned int *seed);
+t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
+				unsigned int *seed);
+
+void	display_progress_bar(int current, int total)
 {
 	double	percent;
 	int		filled_len;
@@ -29,7 +37,7 @@ static void	display_progress_bar(int current, int total)
 		write(STDOUT_FILENO, "\n", 1);
 }
 
-static t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
+t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
 		t_color3 albedo)
 {
 	t_vec3			light_dir;
@@ -53,74 +61,56 @@ static t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
 					scene->light.ratio)), cos_theta));
 }
 
-t_color3	ray_color(const t_ray *r, t_scene *scene, int depth)
+t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
+		unsigned int *seed)
 {
 	t_hit_record	rec;
-	t_ray			scattered;
-	t_color3		attenuation;
 	t_color3		emitted;
 	t_color3		direct_light;
 	t_color3		indirect_light;
+	t_scatter_ctx	ctx;
 
 	if (depth <= 0)
-		return (color_init(0, 0, 0));
+		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
 	if (!scene->bvh || !scene->bvh->vtable->hit(scene->bvh->object, r, 0.001,
 			100000.0, &rec))
 	{
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
 	}
 	emitted = rec.mat.vtable->emitted(rec.mat.object, 0, 0, &rec.p);
-	if (!rec.mat.vtable->scatter(rec.mat.object, r, &rec, &attenuation,
-			&scattered))
+	ctx.r_in = r;
+	ctx.rec = &rec;
+	ctx.seed = seed;
+	if (!rec.mat.vtable->scatter(rec.mat.object, &ctx))
 		return (emitted);
-	direct_light = calc_direct_light(scene, &rec, attenuation);
-	indirect_light = vec_mult(attenuation, ray_color(&scattered, scene, depth
-				- 1));
+	direct_light = calc_direct_light(scene, &rec, ctx.attenuation);
+	indirect_light = vec_mult(ctx.attenuation, ray_color(&(ctx.scattered), scene, depth
+				- 1, seed));
 	return (vec_add(emitted, vec_add(direct_light, indirect_light)));
 }
 
-static t_color3 sampling_ray(t_scene *scene, t_camera *cam, int x, int y)
+t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
+		unsigned int *seed)
 {
-	t_color3	pixel_color;
-	double		u;
-	double		v;
-	int			s;
-	t_ray		r;
+	t_color3 pixel_color;
+	double u;
+	double v;
+	int s;
+	t_ray r;
 
 	pixel_color = color_init(0, 0, 0);
 	s = 0;
 	while (s < SAMPLE_PER_PIXEL)
 	{
-		u = (x + random_double()) / (scene->screen_width - 1);
-		v = (scene->screen_height - 1 - y + random_double())
+		u = (x + random_double(seed)) / (scene->screen_width - 1);
+		v = (scene->screen_height - 1 - y + random_double(seed))
 			/ (scene->screen_height - 1);
 		r = camera_get_ray(cam, u, v);
-		pixel_color = color_add(pixel_color, ray_color(&r, scene, MAX_DEPTH));
-        s++;
+		pixel_color = color_add(pixel_color, ray_color(&r, scene, MAX_DEPTH,
+					seed));
+		s++;
 	}
 	return (color_init(ft_clamp(sqrt(pixel_color.r / SAMPLE_PER_PIXEL), 0, 1),
 			ft_clamp(sqrt(pixel_color.g / SAMPLE_PER_PIXEL), 0, 1),
 			ft_clamp(sqrt(pixel_color.b / SAMPLE_PER_PIXEL), 0, 1)));
-}
-
-int	raytracing(t_scene *scene, t_camera *cam)
-{
-	t_color3	pixel_color;
-	int			x;
-	int			y;
-
-	y = 0;
-	while (y < scene->screen_height)
-	{
-		display_progress_bar(y + 1, scene->screen_height);
-		x = 0;
-		while (x < scene->screen_width)
-		{
-            pixel_color = sampling_ray(scene, cam, x, y);
-			my_mlx_pixel_put(scene, x, y, tcolor2rgb(pixel_color));
-			x++;
-		}
-		y++;
-	}
-	return (0);
 }

@@ -1,7 +1,7 @@
 #include "hittable/bvh.h"
 
 static t_bvh_build_node	*_build_bvh_recursive(t_hittable_lst *objects,
-							t_bvh_build_info *info_lst, int left, int right,
+							t_bvh_build_info *info_lst, t_range *range,
 							int *count);
 t_bvh_build				*build_bvh_recursive(t_hittable_lst *objects);
 static int				_flatten_bvh(t_linear_bvh *linear_bvh,
@@ -10,8 +10,9 @@ t_linear_bvh			*flatten_bvh(t_bvh_build *bvh_build,
 							t_hittable_lst *objects);
 
 #include <stdio.h>
+
 static t_bvh_build_node	*_build_bvh_recursive(t_hittable_lst *objects,
-		t_bvh_build_info *info_lst, int left, int right, int *count)
+		t_bvh_build_info *info_lst, t_range *range, int *count)
 {
 	t_bvh_build_node	*node;
 	int					split_idx;
@@ -21,13 +22,13 @@ static t_bvh_build_node	*_build_bvh_recursive(t_hittable_lst *objects,
 	node = (t_bvh_build_node *)malloc(sizeof(t_bvh_build_node));
 	if (!node)
 		return (NULL);
-	node->bbox = merge_bbox_in_given_range(info_lst, left, right);
-	n_hittables = right - left;
+	node->bbox = merge_bbox_in_given_range(info_lst, range);
+	n_hittables = range->end - range->start;
 	if (n_hittables > MAX_LEAF_PRIMS)
-		split_idx = split_based_on_sah(node, info_lst, left, right);
-	if (n_hittables <= MAX_LEAF_PRIMS || split_idx == left)
+		split_idx = split_based_on_sah(node, info_lst, range);
+	if (n_hittables <= MAX_LEAF_PRIMS || split_idx == range->start)
 	{
-		node->first_hittable_idx = left;
+		node->first_hittable_idx = range->start;
 		node->n_hittables = n_hittables;
 		node->left = NULL;
 		node->right = NULL;
@@ -35,8 +36,10 @@ static t_bvh_build_node	*_build_bvh_recursive(t_hittable_lst *objects,
 	else
 	{
 		node->n_hittables = 0;
-		node->left = _build_bvh_recursive(objects, info_lst, left, split_idx, count);
-		node->right = _build_bvh_recursive(objects, info_lst, split_idx, right, count);
+		node->left = _build_bvh_recursive(objects, info_lst,
+				&(t_range){range->start, split_idx}, count);
+		node->right = _build_bvh_recursive(objects, info_lst,
+				&(t_range){split_idx, range->end}, count);
 	}
 	return (node);
 }
@@ -57,7 +60,7 @@ t_bvh_build	*build_bvh_recursive(t_hittable_lst *objects)
 		return (NULL);
 	}
 	bvh_build->n_nodes = 0;
-	root = _build_bvh_recursive(objects, info_lst, 0, objects->size,
+	root = _build_bvh_recursive(objects, info_lst, &(t_range){0, objects->size},
 			&(bvh_build->n_nodes));
 	printf("BVH Nodes created: %d\n", bvh_build->n_nodes);
 	free(info_lst);

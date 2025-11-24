@@ -6,7 +6,7 @@ static double	calc_min_cost_in_given_axis(t_bucket *buckets,
 					t_bucket_predicate *pred, int n_hittables);
 static int		min_idx_of_db_arr(double *arr, int size);
 int				split_based_on_sah(t_bvh_build_node *node,
-					t_bvh_build_info *info_lst, int left, int right);
+					t_bvh_build_info *info_lst, t_range *range);
 
 static void	accumulate_surface_area(t_bucket *buckets, double *left_res,
 		double *right_res)
@@ -93,7 +93,7 @@ static int	min_idx_of_db_arr(double *arr, int size)
 }
 
 int	split_based_on_sah(t_bvh_build_node *node, t_bvh_build_info *info_lst,
-		int left, int right)
+		t_range *range)
 {
 	t_bucket_predicate	pred;
 	t_bucket			buckets[N_BUCKETS];
@@ -102,23 +102,21 @@ int	split_based_on_sah(t_bvh_build_node *node, t_bvh_build_info *info_lst,
 	int					axis;
 
 	pred.n_buckets = N_BUCKETS;
-	pred.centroid_bbox = calc_centroid_bbox_in_given_range(info_lst, left,
-			right);
+	pred.centroid_bbox = calc_centroid_bbox_in_given_range(info_lst, range);
 	axis = -1;
 	while (++axis < 3)
 	{
 		pred.axis = axis;
 		init_bucket_lst(buckets, N_BUCKETS);
-		assign_info_to_buckets(buckets, info_lst, &pred, &((t_range){left,
-				right}));
-		costs[axis] = calc_min_cost_in_given_axis(buckets, &pred, (right
-					- left));
+		assign_info_to_buckets(buckets, info_lst, &pred, range);
+		costs[axis] = calc_min_cost_in_given_axis(buckets, &pred, (range->end
+					- range->start));
 		split_bucket_ids[axis] = pred.split_bucket_id;
 	}
 	node->split_axis = min_idx_of_db_arr(costs, 3);
 	pred.axis = node->split_axis;
 	pred.split_bucket_id = split_bucket_ids[node->split_axis];
 	if (pred.split_bucket_id == -1)
-		return (left);
-	return (partition_infos(info_lst, left, right, &pred));
+		return (range->start);
+	return (partition_infos(info_lst, range, &pred));
 }

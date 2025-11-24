@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 20:23:52 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/21 22:08:00 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/23 22:41:48 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_vec3			vec_reflect(t_vec3 v, t_vec3 n);
 t_vec3			vec_refract(t_vec3 uv, t_vec3 n, double etai_over_etat);
 double			schlick(double cosine, double ref_idx);
 
-t_vec3			random_in_unit_sphere(void);
-t_vec3			random_unit_vector(void);
+t_vec3			random_in_unit_sphere(unsigned int *seed);
+t_vec3			random_unit_vector(unsigned int *seed);
 
 #endif

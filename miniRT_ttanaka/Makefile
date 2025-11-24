@@ -2,6 +2,7 @@ NAME		=	miniRT
 
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
+LDLIBS		=  	-lpthread
 
 RM			=	rm -f
 RM_DIR		=	rm -rf
@@ -15,10 +16,13 @@ OBJ_DIR		=	obj
 SRCS_MAIN	=	$(SRC_DIR)/main.c \
 				$(SRC_DIR)/camera.c \
 				$(SRC_DIR)/plot.c \
-				$(SRC_DIR)/raytracing.c \
 				$(SRC_DIR)/utils.c
 
 SRCS_RAY	=	$(SRC_DIR)/ray/ray.c
+
+SRCS_RAYTRACING =	$(SRC_DIR)/raytracing/raytracing.c \
+					$(SRC_DIR)/raytracing/raytracing_thread.c \
+					$(SRC_DIR)/raytracing/raytracing_utils.c 
 
 SRCS_SHAPE	=	$(SRC_DIR)/shape/cylinder.c \
 				$(SRC_DIR)/shape/plane.c \
@@ -78,7 +82,7 @@ SRCS_LIBFT	=	$(SRC_DIR)/utils/libft/ft_atoi.c \
 				$(SRC_DIR)/utils/libft/ft_strtod_utils1.c \
 				$(SRC_DIR)/utils/libft/ft_strtod_utils2.c
 
-SRCS		=	$(SRCS_MAIN) $(SRCS_RAY) $(SRCS_SHAPE) $(SRCS_MAT) \
+SRCS		=	$(SRCS_MAIN) $(SRCS_RAY) $(SRCS_RAYTRACING) $(SRCS_SHAPE) $(SRCS_MAT) \
 				$(SRCS_HIT) $(SRC_AABB) $(SRCS_PARSE) $(SRCS_UTILS) $(SRCS_LIBFT)
 
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
@@ -117,7 +121,7 @@ MLX_FLAGS	=	-L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS) $(GNL_OBJS) $(MLX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(INCLUDES) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS)  $(OBJS) $(GNL_OBJS) $(INCLUDES) $(MLX_FLAGS) $(LDLIBS) -o $(NAME)
 
 $(MLX_LIB):
 	make -C $(MLX_PATH)

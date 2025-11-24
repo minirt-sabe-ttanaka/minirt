@@ -7,8 +7,8 @@ int			get_bucket_id(const t_bvh_build_info *info,
 void		assign_info_to_buckets(t_bucket *bucket_lst,
 				const t_bvh_build_info *info_lst,
 				const t_bucket_predicate *pred, t_range *range);
-t_aabb		merge_bbox_in_given_range(t_bvh_build_info *info_lst, int start,
-				int end);
+t_aabb		merge_bbox_in_given_range(t_bvh_build_info *info_lst,
+				t_range *range);
 
 static void	_init_bucket(t_bucket *bucket)
 {
@@ -64,16 +64,15 @@ void	assign_info_to_buckets(t_bucket *bucket_lst,
 	}
 }
 
-t_aabb	merge_bbox_in_given_range(t_bvh_build_info *info_lst, int start,
-		int end)
+t_aabb	merge_bbox_in_given_range(t_bvh_build_info *info_lst, t_range *range)
 {
 	t_aabb	res;
 	int		i;
 	int		axis;
 
 	init_aabb(&res);
-	i = start;
-	while (i < end)
+	i = range->start;
+	while (i < range->end)
 	{
 		axis = 0;
 		while (axis < 3)

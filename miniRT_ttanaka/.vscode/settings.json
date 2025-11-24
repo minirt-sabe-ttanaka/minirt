@@ -21,6 +21,8 @@
         "stdio.h": "c",
         "ratio": "c",
         "material.h": "c",
-        "raytracing.h": "c"
+        "raytracing.h": "c",
+        "ios": "c",
+        "ray.h": "c"
     }
 }

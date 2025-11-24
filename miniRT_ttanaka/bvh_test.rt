@@ -1,0 +1,29 @@
+# ----------------------------------------
+# Scene: BVH Stress Test
+# Description: Overlapping spheres to test acceleration structure
+# ----------------------------------------
+
+A 0.1 255,255,255
+C 0,0,20 0,0,-1 70
+L 0,10,10 0.8 255,255,255
+
+# Background Plane
+pl 0,0,-10 0,0,1 200,200,255 lambertian
+
+# Grid of spheres (3x3x3 centered)
+# Z = 0
+sp -3,-3,0 2.0 255,0,0 metal 0.1
+sp  0,-3,0 2.0 0,255,0 metal 0.1
+sp  3,-3,0 2.0 0,0,255 metal 0.1
+sp -3,0,0 2.0 255,255,0 dielectric 1.5
+sp  0,0,0 2.0 0,255,255 lambertian
+sp  3,0,0 2.0 255,0,255 dielectric 1.5
+sp -3,3,0 2.0 255,100,100 metal 0.0
+sp  0,3,0 2.0 100,255,100 metal 0.0
+sp  3,3,0 2.0 100,100,255 metal 0.0
+
+# Z = 3 (Closer to camera)
+sp -1.5,-1.5,3 1.5 50,50,50 dielectric 1.5
+sp  1.5,-1.5,3 1.5 50,50,50 dielectric 1.5
+sp -1.5,1.5,3 1.5 50,50,50 dielectric 1.5
+sp  1.5,1.5,3 1.5 50,50,50 dielectric 1.5

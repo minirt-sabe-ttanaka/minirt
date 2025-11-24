@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
+# define WIDTH 800
+# define HEIGHT 800
 # define EPS 1e-2
 # define SHADOW_BIAS 1e-2
 
