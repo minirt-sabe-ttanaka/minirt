@@ -2,8 +2,8 @@
 
 t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
 				t_material mat);
-bool		sphere_hit(const void *object, const t_ray *r, double t_min,
-				double t_max, t_hit_record *rec);
+bool		sphere_hit(const void *object, const t_ray *r, t_double_range range,
+				t_hit_record *rec);
 bool		sphere_bbox(const void *object, t_aabb *output_bbox);
 
 t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
@@ -21,38 +21,43 @@ t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
 	return (h);
 }
 
-bool	sphere_hit(const void *object, const t_ray *r, double t_min,
-		double t_max, t_hit_record *rec)
+static void	calc_sp_coefficients(const t_sphere *sp, const t_ray *r,
+		double *eqn)
 {
-	const t_sphere	*s = (const t_sphere *)object;
-	t_vec3			oc;
-	double			a;
-	double			half_b;
-	double			c;
-	double			d;
-	double			root;
+	t_vec3	co;
+
+	co = vec_sub(r->orig, sp->center);
+	eqn[0] = vec_norm_squared(r->dir);
+	eqn[1] = 2.0 * vec_dot(co, r->dir);
+	eqn[2] = vec_norm_squared(co) - sp->radius * sp->radius;
+}
+
+bool	sphere_hit(const void *object, const t_ray *r, t_double_range range,
+		t_hit_record *rec)
+{
+	const t_sphere	*sp;
+	double			eqn[3];
+	double			roots[2];
+	int				i;
 	t_vec3			outward_normal;
 
-	oc = vec_sub(r->orig, s->center);
-	a = vec_norm_squared(r->dir);
-	half_b = vec_dot(oc, r->dir);
-	c = vec_norm_squared(oc) - s->radius * s->radius;
-	d = half_b * half_b - a * c;
-	if (d < 0)
+	sp = (const t_sphere *)object;
+	calc_sp_coefficients(sp, r, eqn);
+	if (ft_solve_quadratic_equation(eqn[0], eqn[1], eqn[2], roots) == false)
 		return (false);
-	root = (-half_b - sqrt(d)) / a;
-	if (root < t_min || t_max < root)
+	i = -1;
+	while (++i < 2)
 	{
-		root = (-half_b + sqrt(d)) / a;
-		if (root < t_min || t_max < root)
-			return (false);
+		if (roots[i] < range.min || range.max < roots[i])
+			continue ;
+		rec->t = roots[i];
+		rec->p = ray_at(*r, roots[i]);
+		outward_normal = vec_scale(vec_sub(rec->p, sp->center), 1.0 / sp->radius);
+		set_face_normal(rec, r, &outward_normal);
+		rec->mat = sp->mat;
+		return (true);
 	}
-	rec->t = root;
-	rec->p = ray_at(*r, rec->t);
-	outward_normal = vec_scale(vec_sub(rec->p, s->center), 1.0 / s->radius);
-	set_face_normal(rec, r, &outward_normal);
-	rec->mat = s->mat;
-	return (true);
+	return (false);
 }
 
 bool	sphere_bbox(const void *object, t_aabb *output_bbox)

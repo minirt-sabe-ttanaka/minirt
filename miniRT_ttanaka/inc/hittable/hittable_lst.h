@@ -26,7 +26,7 @@ void			destroy_hittable_lst(t_hittable_lst *lst);
 void			hittable_lst_init(t_hittable_lst *lst);
 int				hittable_lst_add(t_hittable_lst *lst, t_hittable object);
 bool			hittable_lst_hit(const void *object, const t_ray *r,
-					double t_min, double t_max, t_hit_record *rec);
+					t_double_range range, t_hit_record *rec);
 t_hittable		create_hittable_lst(t_hittable_lst *lst);
 
 #endif

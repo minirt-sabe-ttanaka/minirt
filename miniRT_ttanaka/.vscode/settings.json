@@ -23,6 +23,7 @@
         "material.h": "c",
         "raytracing.h": "c",
         "ios": "c",
-        "ray.h": "c"
+        "ray.h": "c",
+        "base_hittable.h": "c"
     }
 }

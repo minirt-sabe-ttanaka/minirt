@@ -6,4 +6,10 @@
 # include "utils/libft.h"
 # include "utils/vector.h"
 
+typedef struct s_double_range
+{
+	double	min;
+	double	max;
+}			t_double_range;
+
 #endif

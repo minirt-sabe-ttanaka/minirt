@@ -2,8 +2,7 @@
 
 t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 				t_material mat);
-bool		plane_hit(const void *object, const t_ray *r, double t_min,
-				double t_max, t_hit_record *rec);
+bool		plane_hit(const void *object, const t_ray *r,t_double_range range, t_hit_record *rec);
 bool		plane_bbox(const void *object, t_aabb *output_bbox);
 
 t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
@@ -21,8 +20,7 @@ t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 	return (h);
 }
 
-bool	plane_hit(const void *object, const t_ray *r, double t_min,
-		double t_max, t_hit_record *rec)
+bool	plane_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec)
 {
 	const t_plane	*p;
 	double			t;
@@ -34,7 +32,7 @@ bool	plane_hit(const void *object, const t_ray *r, double t_min,
 	if (fabs(dot_d_n) < 1e-6)
 		return (false);
 	t = vec_dot(vec_sub(p->point, r->orig), p->normal) / dot_d_n;
-	if (t < t_min || t_max < t)
+	if (t < range.min || range.max < t)
 		return (false);
 	rec->t = t;
 	rec->p = ray_at(*r, t);

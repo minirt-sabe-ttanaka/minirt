@@ -4,11 +4,12 @@
 # include "aabb.h"
 # include "material.h"
 # include "ray.h"
+# include "utils.h"
 
 typedef struct s_hittable_vtable
 {
 	bool					(*hit)(const void *object, const t_ray *r,
-							double t_min, double t_max, t_hit_record *rec);
+							t_double_range range, t_hit_record *rec);
 	bool					(*bbox)(const void *object, t_aabb *output_bbox);
 	void					(*destroy)(void *object);
 }							t_hittable_vtable;

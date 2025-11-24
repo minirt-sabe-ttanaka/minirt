@@ -55,7 +55,7 @@ typedef struct s_linear_bvh
 
 t_linear_bvh				*bvh_init(t_hittable_lst *objects);
 bool						bvh_hit(const void *object, const t_ray *r,
-								double t_min, double t_max, t_hit_record *rec);
+								t_double_range range, t_hit_record *rec);
 t_hittable					create_hittable_bvh(t_linear_bvh *bvh);
 bool						convert_lst_2_bvh(t_hittable_lst *lst,
 								t_hittable **bvh);
@@ -122,7 +122,7 @@ typedef struct s_bvh_traversal
 }							t_bvh_traversal;
 
 t_bvh_traversal				init_traversal_info(const void *object,
-								const t_ray *r, double t_min, double t_max,
+								const t_ray *r, t_double_range range,
 								t_hit_record *rec);
 void						hit_leaf_objects(t_bvh_traversal *info,
 								const t_linear_bvh_node *node);

@@ -11,8 +11,7 @@ typedef struct s_aabb
 	t_vec3	max;
 }			t_aabb;
 
-bool		aabb_hit(const t_aabb *bbox, const t_ray *r, double t_min,
-				double t_max);
+bool		aabb_hit(const t_aabb *bbox, const t_ray *r, t_double_range range);
 t_aabb		merge_bbox(const t_aabb *bbox_0, const t_aabb *bbox_1);
 t_vec3		calc_centroid_of_bbox(const t_aabb *bbox);
 double		calc_surface_area_of_bbox(const t_aabb *bbox);

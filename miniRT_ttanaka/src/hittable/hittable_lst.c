@@ -1,15 +1,10 @@
 #include "hittable/hittable_lst.h"
 
-void		destroy_hittable_lst(t_hittable_lst *lst);
 void		hittable_lst_init(t_hittable_lst *lst);
 int			hittable_lst_add(t_hittable_lst *lst, t_hittable object);
-bool		hittable_lst_hit(const void *object, const t_ray *r, double t_min,
-				double t_max, t_hit_record *rec);
+bool		hittable_lst_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec);
 t_hittable	create_hittable_lst(t_hittable_lst *lst);
 bool		hittable_lst_bbox(const void *object, t_aabb *output_bbox);
-
-
-
 
 void	hittable_lst_init(t_hittable_lst *lst)
 {
@@ -42,13 +37,11 @@ int	hittable_lst_add(t_hittable_lst *lst, t_hittable object)
 	return (true);
 }
 
-bool	hittable_lst_hit(const void *object, const t_ray *r, double t_min,
-		double t_max, t_hit_record *rec)
+bool	hittable_lst_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec)
 {
 	(void)object;
 	(void)r;
-	(void)t_min;
-	(void)t_max;
+	(void)range;
 	(void)rec;
 	return (true);
 	// const t_hittable_lst	*lst = (const t_hittable_lst *)object;

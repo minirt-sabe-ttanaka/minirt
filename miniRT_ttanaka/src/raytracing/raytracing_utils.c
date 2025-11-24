@@ -52,7 +52,7 @@ t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
 	shadow_ray = ray_init(vec_add(rec->p, vec_scale(rec->normal, SHADOW_BIAS)),
 			light_dir);
 	if (scene->bvh && scene->bvh->vtable->hit(scene->bvh->object, &shadow_ray,
-			SHADOW_BIAS, dist - SHADOW_BIAS, &tmp_rec))
+			(t_double_range){SHADOW_BIAS, dist - SHADOW_BIAS}, &tmp_rec))
 		return (color_init(0, 0, 0));
 	cos_theta = vec_dot(rec->normal, light_dir);
 	if (cos_theta < 0)
@@ -72,8 +72,8 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
 
 	if (depth <= 0)
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
-	if (!scene->bvh || !scene->bvh->vtable->hit(scene->bvh->object, r, 0.001,
-			100000.0, &rec))
+	if (!scene->bvh || !scene->bvh->vtable->hit(scene->bvh->object, r,
+			(t_double_range){0.001, 100000.0}, &rec))
 	{
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
 	}
@@ -84,8 +84,8 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
 	if (!rec.mat.vtable->scatter(rec.mat.object, &ctx))
 		return (emitted);
 	direct_light = calc_direct_light(scene, &rec, ctx.attenuation);
-	indirect_light = vec_mult(ctx.attenuation, ray_color(&(ctx.scattered), scene, depth
-				- 1, seed));
+	indirect_light = vec_mult(ctx.attenuation, ray_color(&(ctx.scattered),
+				scene, depth - 1, seed));
 	return (vec_add(emitted, vec_add(direct_light, indirect_light)));
 }
 

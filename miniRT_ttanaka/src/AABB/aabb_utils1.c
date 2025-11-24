@@ -6,15 +6,14 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 02:25:41 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/23 00:56:27 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/24 22:19:12 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabb.h"
 #include <stdio.h>
 
-bool		aabb_hit(const t_aabb *bbox, const t_ray *r, double t_min,
-				double t_max);
+bool		aabb_hit(const t_aabb *bbox, const t_ray *r, t_double_range range);
 t_aabb		merge_bbox(const t_aabb *bbox_0, const t_aabb *bbox_1);
 t_vec3		calc_centroid_of_bbox(const t_aabb *bbox);
 double		calc_surface_area_of_bbox(const t_aabb *bbox);
@@ -28,7 +27,7 @@ static void	ft_db_swap(double *x1, double *x2)
 	*x2 = tmp;
 }
 
-bool	aabb_hit(const t_aabb *bbox, const t_ray *r, double t_min, double t_max)
+bool	aabb_hit(const t_aabb *bbox, const t_ray *r, t_double_range range)
 {
 	int		axis;
 	double	inv_d;
@@ -43,9 +42,9 @@ bool	aabb_hit(const t_aabb *bbox, const t_ray *r, double t_min, double t_max)
 		t1 = (bbox->max.v[axis] - r->orig.v[axis]) * inv_d;
 		if (t0 > t1)
 			ft_db_swap(&t0, &t1);
-		t_min = fmax(t_min, t0);
-		t_max = fmin(t_max, t1);
-		if (t_max <= t_min)
+		range.min = fmax(range.min, t0);
+		range.max = fmin(range.max, t1);
+		if (range.max <= range.min)
 			return (false);
 		axis++;
 	}
