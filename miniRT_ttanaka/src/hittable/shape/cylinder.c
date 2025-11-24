@@ -1,4 +1,4 @@
-#include "shape.h"
+#include "hittable/shape.h"
 
 bool		cylinder_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec);
 t_hittable	create_cylinder(t_cylinder *cy, t_cylinder_config *config,

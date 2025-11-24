@@ -1,8 +1,9 @@
-#include "shape.h"
+#include "hittable/shape.h"
 
 t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 				t_material mat);
-bool		plane_hit(const void *object, const t_ray *r,t_double_range range, t_hit_record *rec);
+bool		plane_hit(const void *object, const t_ray *r, t_double_range range,
+				t_hit_record *rec);
 bool		plane_bbox(const void *object, t_aabb *output_bbox);
 
 t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
@@ -20,7 +21,8 @@ t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 	return (h);
 }
 
-bool	plane_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec)
+bool	plane_hit(const void *object, const t_ray *r, t_double_range range,
+		t_hit_record *rec)
 {
 	const t_plane	*p;
 	double			t;

@@ -1,4 +1,4 @@
-#include "shape.h"
+#include "hittable/shape.h"
 
 t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
 				t_material mat);
@@ -52,7 +52,8 @@ bool	sphere_hit(const void *object, const t_ray *r, t_double_range range,
 			continue ;
 		rec->t = roots[i];
 		rec->p = ray_at(*r, roots[i]);
-		outward_normal = vec_scale(vec_sub(rec->p, sp->center), 1.0 / sp->radius);
+		outward_normal = vec_scale(vec_sub(rec->p, sp->center), 1.0
+				/ sp->radius);
 		set_face_normal(rec, r, &outward_normal);
 		rec->mat = sp->mat;
 		return (true);

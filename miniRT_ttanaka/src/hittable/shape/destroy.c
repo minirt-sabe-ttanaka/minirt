@@ -1,4 +1,4 @@
-#include "shape.h"
+#include "hittable/shape.h"
 
 void	cylinder_destroy(void *object);
 void	plane_destroy(void *object);
