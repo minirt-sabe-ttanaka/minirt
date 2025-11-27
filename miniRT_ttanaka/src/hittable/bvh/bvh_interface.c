@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:17:08 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:17:09 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:26:40 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool	bvh_hit(const void *object, const t_ray *r, t_double_range range,
 t_hittable	create_hittable_bvh(t_linear_bvh *bvh)
 {
 	t_hittable						h;
-	static const t_hittable_vtable	lst_vtable = {bvh_hit, bvh_bbox, NULL};
+	static const t_hittable_vtable	lst_vtable = {bvh_hit, bvh_bbox, NULL, NULL, NULL};
 
 	h.object = bvh;
 	h.vtable = &lst_vtable;

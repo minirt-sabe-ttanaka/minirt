@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:22:34 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:22:35 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:50:12 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ bool	set_sphere(char **splitted_data, t_scene *scene)
 		return (false);
 	}
 	if (hittable_lst_add(scene->objects, create_sphere(sphere, s_config.center,
+				s_config.radius, m)) == false)
+	{
+		free(sphere);
+		return (false);
+	}
+	if (m_config.type == diffuse_light && hittable_lst_add((t_hittable_lst *)scene->light_group.object, create_sphere(sphere, s_config.center,
 				s_config.radius, m)) == false)
 	{
 		free(sphere);

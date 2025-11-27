@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:23:57 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:23:58 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:28:39 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_hittable	create_sphere(t_sphere *s, t_point3 center, double radius,
 		t_material mat)
 {
 	static const t_hittable_vtable	sphere_vtable = {sphere_hit, sphere_bbox,
-			sphere_destroy};
+			sphere_destroy, sphere_pdf_value, sphere_random};
 	t_hittable						h;
 
 	s->center = center;

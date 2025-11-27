@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:19:30 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:19:31 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:22:46 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ unsigned int	init_seed(void);
 int				my_rand(unsigned int *seed);
 double			random_double(unsigned int *seed);
 double			random_double_range(unsigned int *seed, double min, double max);
+int				random_int_range(unsigned int *seed, int min, int max);
 
 unsigned int	init_seed(void)
 {
@@ -39,4 +40,9 @@ double	random_double(unsigned int *seed)
 double	random_double_range(unsigned int *seed, double min, double max)
 {
 	return (min + (max - min) * random_double(seed));
+}
+
+int	random_int_range(unsigned int *seed, int min, int max)
+{
+	return ((int)(min + (max - min + 1) * random_double(seed)));
 }

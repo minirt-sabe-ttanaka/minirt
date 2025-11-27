@@ -6,19 +6,19 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:21:14 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:21:17 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:48:37 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/raytracing.h"
 
-void		display_progress_bar(int current, int total);
-t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
-				t_color3 albedo);
-t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
-				unsigned int *seed);
-t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
-				unsigned int *seed);
+void			display_progress_bar(int current, int total);
+t_color3		calc_direct_light(t_scene *scene, t_hit_record *rec,
+					t_color3 albedo);
+t_color3		ray_color(const t_ray *r, t_scene *scene, int depth,
+					unsigned int *seed);
+t_color3		sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
+					unsigned int *seed);
 
 void	display_progress_bar(int current, int total)
 {
@@ -73,32 +73,94 @@ t_color3	calc_direct_light(t_scene *scene, t_hit_record *rec,
 					scene->light.ratio)), cos_theta));
 }
 
+static void	free_pdfs(t_pdf *p1, t_pdf *p2, t_pdf *mix)
+{
+	if (p1)
+	{
+		free(p1->data);
+		free(p1);
+	}
+	if (p2)
+	{
+		free(p2->data);
+		free(p2);
+	}
+	if (mix)
+	{
+		free(mix->data);
+		free(mix);
+	}
+}
+
+static t_color3	calc_diffuse(t_scene *scene, t_scatter_record *srec,
+		t_scatter_ctx *ctx, int depth)
+{
+	t_pdf		*light_pdf;
+	t_pdf		*active_pdf;
+	t_ray		scattered;
+	t_color3	color;
+	double		pdf_val;
+	t_hittable_lst *lights_lst;
+	
+	
+	lights_lst = (t_hittable_lst *)scene->light_group.object;
+	if (lights_lst->size > 0)
+	{
+		light_pdf = create_hittable_pdf(&scene->light_group,
+				ctx->rec->p);
+		active_pdf = create_mixture_pdf(light_pdf, srec->pdf_ptr);
+	}
+	else
+	{
+		light_pdf = NULL;
+		active_pdf = srec->pdf_ptr;
+	}
+	scattered = ray_init(ctx->rec->p, active_pdf->vtable->generate(active_pdf->data,
+				ctx->seed));
+	pdf_val = active_pdf->vtable->value(active_pdf->data, &scattered.dir);
+	if (pdf_val == 0)
+	{
+		if (light_pdf)
+			free_pdfs(light_pdf, srec->pdf_ptr, active_pdf);
+		else
+			free_pdfs(light_pdf, srec->pdf_ptr, NULL);
+		return (color_init(0, 0, 0));
+	}
+	color = vec_mult(srec->attenuation, ray_color(&scattered, scene, depth - 1,
+				ctx->seed));
+	color = vec_scale(color,
+			ctx->rec->mat.vtable->scattering_pdf(ctx->rec->mat.object,
+				ctx->r_in, ctx->rec, &scattered) / pdf_val);
+	if (light_pdf)
+		free_pdfs(light_pdf, srec->pdf_ptr, active_pdf);
+	else
+		free_pdfs(light_pdf, srec->pdf_ptr, NULL);
+	return (color);
+}
+
 t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
 		unsigned int *seed)
 {
-	t_hit_record	rec;
-	t_color3		emitted;
-	t_color3		direct_light;
-	t_color3		indirect_light;
-	t_scatter_ctx	ctx;
+	t_hit_record		rec;
+	t_scatter_record	srec;
+	t_scatter_ctx		ctx;
+	t_color3			emitted;
 
 	if (depth <= 0)
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
 	if (!scene->bvh || !scene->bvh->vtable->hit(scene->bvh->object, r,
-			(t_double_range){0.001, 100000.0}, &rec))
-	{
+			(t_double_range){0.001, INFINITY}, &rec))
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
-	}
 	emitted = rec.mat.vtable->emitted(rec.mat.object, 0, 0, &rec.p);
 	ctx.r_in = r;
 	ctx.rec = &rec;
 	ctx.seed = seed;
-	if (!rec.mat.vtable->scatter(rec.mat.object, &ctx))
+	if (!rec.mat.vtable->scatter(rec.mat.object, &ctx, &srec))
 		return (emitted);
-	direct_light = calc_direct_light(scene, &rec, ctx.attenuation);
-	indirect_light = vec_mult(ctx.attenuation, ray_color(&(ctx.scattered),
-				scene, depth - 1, seed));
-	return (vec_add(emitted, vec_add(direct_light, indirect_light)));
+	if (srec.is_specular)
+		return (vec_add(emitted, vec_mult(srec.attenuation,
+					ray_color(&srec.specular_ray, scene, depth - 1, seed))));
+	return (vec_add(emitted, calc_diffuse(scene, &srec, &ctx, depth)));
 }
 
 t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,

@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:24:08 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:24:09 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:25:09 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void		hittable_lst_init(t_hittable_lst *lst);
 int			hittable_lst_add(t_hittable_lst *lst, t_hittable object);
-bool		hittable_lst_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec);
+bool		hittable_lst_hit(const void *object, const t_ray *r,
+				t_double_range range, t_hit_record *rec);
 t_hittable	create_hittable_lst(t_hittable_lst *lst);
 bool		hittable_lst_bbox(const void *object, t_aabb *output_bbox);
 
@@ -49,7 +50,8 @@ int	hittable_lst_add(t_hittable_lst *lst, t_hittable object)
 	return (true);
 }
 
-bool	hittable_lst_hit(const void *object, const t_ray *r, t_double_range range, t_hit_record *rec)
+bool	hittable_lst_hit(const void *object, const t_ray *r,
+		t_double_range range, t_hit_record *rec)
 {
 	(void)object;
 	(void)r;
@@ -80,7 +82,8 @@ bool	hittable_lst_hit(const void *object, const t_ray *r, t_double_range range, 
 t_hittable	create_hittable_lst(t_hittable_lst *lst)
 {
 	static const t_hittable_vtable	lst_vtable = {hittable_lst_hit,
-			hittable_lst_bbox, NULL };
+			hittable_lst_bbox, NULL, hittable_lst_pdf_value,
+			hittable_lst_random};
 	t_hittable						h;
 
 	h.object = lst;

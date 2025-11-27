@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:00:34 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:16:20 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:13:57 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define SHAPE_H
 
 # include "core/utils.h"
+# include "rt_struct.h"
 # include "scene/hittable.h"
 # include "scene/material.h"
-# include "struct.h"
 
 # define BBOX_INF 1e30
 
@@ -81,5 +81,20 @@ bool			cylinder_hit(const void *object, const t_ray *r,
 void			cylinder_destroy(void *object);
 void			plane_destroy(void *object);
 void			sphere_destroy(void *object);
+
+double			sphere_pdf_value(const void *object, const t_point3 o,
+					const t_vec3 v);
+t_vec3			sphere_random(const void *object, const t_point3 o,
+					unsigned int *seed);
+
+double			plane_pdf_value(const void *obj, const t_point3 o,
+					const t_vec3 v);
+t_vec3			plane_random(const void *obj, const t_point3 o,
+					unsigned int *seed);
+
+t_vec3			cylinder_random(const void *object, const t_point3 o,
+					unsigned int *seed);
+double			cylinder_pdf_value(const void *object, const t_point3 o,
+					const t_vec3 v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:22:32 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:22:33 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:01:13 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ bool	set_camera(char **splitted_data, t_scene *scene) {
 bool	set_light(char **splitted_data, t_scene *scene) {
   if (scene->light_initialized == true)
     return (false);
+    
   if (ft_strarr_len(splitted_data) != 4)
     return (false);
   if (parse_coords_format(splitted_data[1], &(scene->light.origin)) == false)

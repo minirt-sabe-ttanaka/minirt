@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:02:16 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:15:44 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:52:20 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include "engine/plot.h"
 # include "scene.h"
 # include "scene/hittable.h"
-# include "struct.h"
+# include "rt_struct.h"
 # include <pthread.h>
 # define BAR_WIDTH 50
 # define MAX_DEPTH 10
-# define SAMPLE_PER_PIXEL 30
+# define SAMPLE_PER_PIXEL 100
 # define NUM_THREADS 8
 
 int					raytracing(t_scene *scene, t_camera *cam);

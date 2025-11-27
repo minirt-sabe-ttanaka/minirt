@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:02:43 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:15:47 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:43:25 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "core/utils.h"
 # include "engine/camera.h"
 # include "scene/hittable.h"
-# include "struct.h"
+# include "rt_struct.h"
 
 typedef struct s_ambient
 {
@@ -38,6 +38,7 @@ typedef struct s_scene
 	t_light			light;
 	t_hittable		*bvh;
 	t_hittable_lst	*objects;
+	t_hittable		light_group;
 	bool			ambient_initialized;
 	bool			camera_initialized;
 	bool			light_initialized;

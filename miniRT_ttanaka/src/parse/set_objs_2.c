@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:22:36 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:22:37 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:50:22 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,15 @@ bool	set_cylinder(char **splitted_data, t_scene *scene)
 		free(cy);
 		return (false);
 	}
-	if (hittable_lst_add(scene->objects, create_cylinder(cy, &c_config, m)) == false)
+	if (hittable_lst_add(scene->objects, create_cylinder(cy, &c_config,
+				m)) == false)
+	{
+		free(cy);
+		return (false);
+	}
+	if (m_config.type == diffuse_light
+		&& hittable_lst_add((t_hittable_lst *)scene->light_group.object,
+			create_cylinder(cy, &c_config, m)) == false)
 	{
 		free(cy);
 		return (false);

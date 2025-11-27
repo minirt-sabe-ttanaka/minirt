@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:01:44 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:15:28 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:13:57 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "core/ray.h"
 # include "core/utils.h"
-# include "struct.h"
+# include "rt_struct.h"
 
 typedef struct s_camera
 {

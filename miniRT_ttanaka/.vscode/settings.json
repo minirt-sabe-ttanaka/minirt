@@ -28,6 +28,9 @@
         "scene.h": "c",
         "stdalign.h": "c",
         "math.h": "c",
-        "struct.h": "c"
+        "rt_struct.h": "c",
+        "pdf.h": "c",
+        "stdbool.h": "c",
+        "time.h": "c"
     }
 }

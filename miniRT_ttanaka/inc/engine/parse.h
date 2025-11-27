@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:02:49 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:15:32 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:13:57 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "scene/hittable.h"
 # include "scene/hittable/shape.h"
 # include "scene/material.h"
-# include "struct.h"
+# include "rt_struct.h"
 # include <fcntl.h>
 # include <stdlib.h>
 

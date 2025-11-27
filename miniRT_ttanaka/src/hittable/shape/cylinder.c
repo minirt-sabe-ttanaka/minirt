@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:17:40 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:17:40 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:27:39 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_hittable	create_cylinder(t_cylinder *cy, t_cylinder_config *config,
 		t_material mat)
 {
 	static const t_hittable_vtable	cylinder_vtable = {cylinder_hit,
-			cylinder_bbox, cylinder_destroy};
+			cylinder_bbox, cylinder_destroy, cylinder_pdf_value,
+			cylinder_random};
 	t_hittable						h;
 
 	cy->center = config->center;

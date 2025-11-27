@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 20:23:52 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/23 22:41:48 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 17:06:08 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,16 @@ typedef struct s_vec3
 		{
 			double r, g, b;
 		};
-		double v[3];
+		double	v[3];
 	};
 }				t_vec3;
+
+typedef struct s_onb
+{
+	t_vec3		u;
+	t_vec3		v;
+	t_vec3		w;
+}				t_onb;
 
 typedef t_vec3	t_point3;
 
@@ -54,5 +61,9 @@ double			schlick(double cosine, double ref_idx);
 
 t_vec3			random_in_unit_sphere(unsigned int *seed);
 t_vec3			random_unit_vector(unsigned int *seed);
+t_vec3			random_cosine_direction(unsigned int *seed);
+
+void	onb_build_from_w(t_onb *onb, t_vec3 n);
+t_vec3	onb_local2world(const t_onb *onb, double a, double b, double c);
 
 #endif

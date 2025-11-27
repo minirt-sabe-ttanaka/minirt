@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:00:36 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:15:53 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:13:57 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include "engine/raytracing.h"
 # include "engine/scene.h"
 # include "mlx.h"
+# include "rt_struct.h"
 # include "scene/hittable.h"
 # include "scene/hittable/shape.h"
 # include "scene/material.h"
-# include "struct.h"
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>

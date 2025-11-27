@@ -6,15 +6,15 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:22:31 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:22:32 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 18:46:07 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine/parse.h"
 
-bool	check_extension(char *path);
-bool	parse_file(char *path, t_scene *scene);
-bool	create_scene(char *path, t_scene *scene);
+bool		check_extension(char *path);
+bool		parse_file(char *path, t_scene *scene);
+bool		create_scene(char *path, t_scene *scene);
 
 bool	check_extension(char *path)
 {
@@ -29,26 +29,36 @@ bool	check_extension(char *path)
 	return (true);
 }
 
-bool	create_scene(char *path, t_scene *scene)
+static bool	init_hittable_lsts(t_scene *scene)
 {
-	int				fd;
-	t_hittable_lst	*hittable_lst;
+	t_hittable_lst	*objects;
+	t_hittable_lst	*lights;
 
-	hittable_lst = (t_hittable_lst *)malloc(sizeof(t_hittable_lst));
-	if (!hittable_lst)
-		return (false);
-	hittable_lst_init(hittable_lst);
-	scene->objects = hittable_lst;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	objects = (t_hittable_lst *)malloc(sizeof(t_hittable_lst));
+	lights = (t_hittable_lst *)malloc(sizeof(t_hittable_lst));
+	if (!objects || !lights)
 	{
-		destroy_hittable_lst(hittable_lst);
+		free(objects);
+		free(lights);
 		return (false);
 	}
+	hittable_lst_init(objects);
+	hittable_lst_init(lights);
+	scene->objects = objects;
+	scene->light_group = create_hittable_lst(lights);
+	return (true);
+}
+
+bool	create_scene(char *path, t_scene *scene)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (false);
 	if (read_lines_loop(fd, scene) == false
 		|| scene->camera_initialized == false)
 	{
-		destroy_hittable_lst(hittable_lst);
 		close(fd);
 		return (false);
 	}
@@ -60,14 +70,22 @@ bool	parse_file(char *path, t_scene *scene)
 {
 	if (check_extension(path) == false)
 		return (false);
-	if (create_scene(path, scene) == false)
+	if (init_hittable_lsts(scene) == false)
 		return (false);
+	if (create_scene(path, scene) == false)
+	{
+		destroy_hittable_lst(scene->objects);
+		return (false);
+	}
 	if ((scene->objects->size) == 0)
 	{
 		scene->bvh = NULL;
 		return (true);
 	}
 	if (convert_lst_2_bvh(scene->objects, &scene->bvh) == false)
+	{
+		destroy_hittable_lst(scene->objects);
 		return (false);
+	}
 	return (true);
 }

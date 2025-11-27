@@ -30,9 +30,12 @@ SRCS_MAT	=	$(SRC_DIR)/material/dielectric.c \
 				$(SRC_DIR)/material/diffuse_light.c \
 				$(SRC_DIR)/material/lambertian.c \
 				$(SRC_DIR)/material/metal.c \
-				$(SRC_DIR)/material/destroy.c
+				$(SRC_DIR)/material/destroy.c \
+				$(SRC_DIR)/material/utils.c
+
 
 SRCS_HIT	=	$(SRC_DIR)/hittable/hittable_lst.c \
+				$(SRC_DIR)/hittable/hittable_lst_pdf.c \
 				$(SRC_DIR)/hittable/destroy.c \
 				$(SRC_DIR)/hittable/bvh/bucket.c \
 				$(SRC_DIR)/hittable/bvh/bvh_build_info.c \
@@ -42,8 +45,11 @@ SRCS_HIT	=	$(SRC_DIR)/hittable/hittable_lst.c \
 				$(SRC_DIR)/hittable/bvh/sah.c \
 				$(SRC_DIR)/hittable/bvh/traverse_utils.c \
 				$(SRC_DIR)/hittable/shape/cylinder.c \
+				$(SRC_DIR)/hittable/shape/cylinder_pdf.c \
 				$(SRC_DIR)/hittable/shape/plane.c \
+				$(SRC_DIR)/hittable/shape/plane_pdf.c \
 				$(SRC_DIR)/hittable/shape/sphere.c \
+				$(SRC_DIR)/hittable/shape/sphere_pdf.c \
 				$(SRC_DIR)/hittable/shape/destroy.c \
 
 SRCS_AABB	=	$(SRC_DIR)/AABB/aabb_utils1.c \
@@ -60,6 +66,10 @@ SRCS_PARSE	=	$(SRC_DIR)/parse/parse.c \
 				$(SRC_DIR)/parse/set_objs_1.c \
 				$(SRC_DIR)/parse/set_objs_2.c
 
+SRCS_PDF	=	$(SRC_DIR)/pdf/pdf_cosine.c \
+				$(SRC_DIR)/pdf/pdf_hittable.c \
+				$(SRC_DIR)/pdf/pdf_mixture.c 
+
 SRCS_UTILS	=	$(SRC_DIR)/utils/color/color.c \
 				$(SRC_DIR)/utils/color/color_utils_1.c \
 				$(SRC_DIR)/utils/color/color_utils_2.c \
@@ -71,6 +81,7 @@ SRCS_UTILS	=	$(SRC_DIR)/utils/color/color.c \
 				$(SRC_DIR)/utils/vector/vec_utils_2.c \
 				$(SRC_DIR)/utils/vector/vec_utils_3.c \
 				$(SRC_DIR)/utils/vector/vec_random.c \
+				$(SRC_DIR)/utils/vector/onb.c \
 
 SRCS_LIBFT	=	$(SRC_DIR)/utils/libft/ft_atoi.c \
 				$(SRC_DIR)/utils/libft/ft_calloc.c \
@@ -87,7 +98,7 @@ SRCS_LIBFT	=	$(SRC_DIR)/utils/libft/ft_atoi.c \
 				$(SRC_DIR)/utils/libft/ft_strtod_utils2.c
 
 SRCS		=	$(SRCS_MAIN) $(SRCS_RAY) $(SRCS_RAYTRACING) $(SRCS_MAT) \
-				$(SRCS_HIT) $(SRCS_AABB) $(SRCS_PARSE) $(SRCS_UTILS) $(SRCS_LIBFT)
+				$(SRCS_HIT) $(SRCS_AABB) $(SRCS_PARSE) $(SRCS_PDF) $(SRCS_UTILS) $(SRCS_LIBFT)
 
 OBJS		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
@@ -97,7 +108,7 @@ GNL_SRCS	=	$(GNL_DIR)/get_next_line.c \
 GNL_OBJS	=	$(patsubst %.c, $(OBJ_DIR)/%.o, $(GNL_SRCS))
 
 HEADERS		=	$(INC_DIR)/minirt.h \
-				$(INC_DIR)/struct.h \
+				$(INC_DIR)/rt_struct.h \
 				$(INC_DIR)/core/utils/color.h \
 				$(INC_DIR)/core/utils/ft_math.h \
 				$(INC_DIR)/core/utils/libft.h \
@@ -106,6 +117,7 @@ HEADERS		=	$(INC_DIR)/minirt.h \
 				$(INC_DIR)/core/utils.h \
 				$(INC_DIR)/engine/camera.h \
 				$(INC_DIR)/engine/parse.h \
+				$(INC_DIR)/engine/pdf.h \
 				$(INC_DIR)/engine/plot.h \
 				$(INC_DIR)/engine/raytracing.h \
 				$(INC_DIR)/engine/scene.h \
@@ -128,10 +140,11 @@ $(NAME): $(OBJS) $(GNL_OBJS) $(MLX_LIB)
 	$(CC) $(CFLAGS)  $(OBJS) $(GNL_OBJS) $(INCLUDES) $(MLX_FLAGS) $(LDLIBS) -o $(NAME)
 
 debug: fclean
-	make CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)" all
+	make CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)" LDFLAGS="$(DEBUG_FLAGS)" all
 
 $(MLX_LIB):
-	make -C $(MLX_PATH)
+	@make -C $(MLX_PATH) CC="$(CC)" \
+	CFLAGS="$(CFLAGS) -DGL_SILENCE_DEPRECATION -Wno-deprecated-declarations -Wno-sign-compare -Wno-unused-parameter -Wno-error"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) Makefile
 	mkdir -p $(dir $@)

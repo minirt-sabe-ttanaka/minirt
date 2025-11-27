@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:23:42 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:23:43 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 15:28:11 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_hittable	create_plane(t_plane *p, t_point3 point, t_vec3 normal,
 		t_material mat)
 {
 	static const t_hittable_vtable	plane_vtable = {plane_hit, plane_bbox,
-			plane_destroy};
+			plane_destroy, plane_pdf_value, plane_random};
 	t_hittable						h;
 
 	p->point = point;
