@@ -31,6 +31,7 @@
         "rt_struct.h": "c",
         "pdf.h": "c",
         "stdbool.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "pthread.h": "c"
     }
 }

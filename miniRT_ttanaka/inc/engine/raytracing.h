@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:02:16 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/27 18:52:20 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 00:57:23 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,25 @@
 
 # include "core/utils.h"
 # include "engine/plot.h"
+# include "rt_struct.h"
 # include "scene.h"
 # include "scene/hittable.h"
-# include "rt_struct.h"
 # include <pthread.h>
 # define BAR_WIDTH 50
 # define MAX_DEPTH 10
 # define SAMPLE_PER_PIXEL 100
 # define NUM_THREADS 8
+# define SIGMA_C 0.1
+# define SIGMA_N 128.0
+# define SIGMA_P 1.0
+
+typedef struct s_pixel_data
+{
+	t_color3		color;
+	t_vec3			normal;
+	t_point3		position;
+	double			depth;
+}					t_pixel_data;
 
 int					raytracing(t_scene *scene, t_camera *cam);
 
@@ -33,6 +44,8 @@ t_color3			ray_color(const t_ray *r, t_scene *scene, int depth,
 						unsigned int *seed);
 t_color3			sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
 						unsigned int *seed);
+void				get_gbuffer_info(t_scene *scene, t_camera *cam, int x,
+						int y, t_pixel_data *data);
 
 typedef struct s_renderer
 {
@@ -46,9 +59,14 @@ typedef struct s_thread_data
 {
 	t_renderer		*renderer;
 	int				id;
+	t_pixel_data	*geo_buffer;
 }					t_thread_data;
 
 int					take_new_line(t_renderer *r);
 void				*render_thread(void *arg);
 
+void				apply_denoise(t_pixel_data *buffer, int screen_width,
+						int screen_height);
+void				transfer_to_image(t_scene *scene, t_pixel_data *buf, int w,
+						int h);
 #endif

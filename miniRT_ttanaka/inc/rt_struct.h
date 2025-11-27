@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:00:40 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/27 17:28:48 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/27 19:52:57 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ typedef struct s_metal				t_metal;
 typedef struct s_dielectric			t_dielectric;
 typedef struct s_diffuse_light		t_diffuse_light;
 typedef struct s_material_config	t_material_config;
-typedef struct s_pdf_vtable         t_pdf_vtable;
+typedef struct s_pdf_vtable			t_pdf_vtable;
 typedef struct s_pdf				t_pdf;
 typedef struct s_cosine_data		t_cosine_data;
 typedef struct s_hittable_pdf_data	t_hittable_pdf_data;
-
+typedef struct s_pixel_data			t_pixel_data;
 #endif

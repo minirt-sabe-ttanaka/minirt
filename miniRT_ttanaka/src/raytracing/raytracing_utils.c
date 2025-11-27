@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:21:14 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/27 18:48:37 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 00:45:14 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_color3		ray_color(const t_ray *r, t_scene *scene, int depth,
 					unsigned int *seed);
 t_color3		sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
 					unsigned int *seed);
+void			get_gbuffer_info(t_scene *scene, t_camera *cam, int x, int y,
+					t_pixel_data *data);
 
 void	display_progress_bar(int current, int total)
 {
@@ -95,19 +97,17 @@ static void	free_pdfs(t_pdf *p1, t_pdf *p2, t_pdf *mix)
 static t_color3	calc_diffuse(t_scene *scene, t_scatter_record *srec,
 		t_scatter_ctx *ctx, int depth)
 {
-	t_pdf		*light_pdf;
-	t_pdf		*active_pdf;
-	t_ray		scattered;
-	t_color3	color;
-	double		pdf_val;
-	t_hittable_lst *lights_lst;
-	
-	
+	t_pdf			*light_pdf;
+	t_pdf			*active_pdf;
+	t_ray			scattered;
+	t_color3		color;
+	double			pdf_val;
+	t_hittable_lst	*lights_lst;
+
 	lights_lst = (t_hittable_lst *)scene->light_group.object;
 	if (lights_lst->size > 0)
 	{
-		light_pdf = create_hittable_pdf(&scene->light_group,
-				ctx->rec->p);
+		light_pdf = create_hittable_pdf(&scene->light_group, ctx->rec->p);
 		active_pdf = create_mixture_pdf(light_pdf, srec->pdf_ptr);
 	}
 	else
@@ -115,8 +115,8 @@ static t_color3	calc_diffuse(t_scene *scene, t_scatter_record *srec,
 		light_pdf = NULL;
 		active_pdf = srec->pdf_ptr;
 	}
-	scattered = ray_init(ctx->rec->p, active_pdf->vtable->generate(active_pdf->data,
-				ctx->seed));
+	scattered = ray_init(ctx->rec->p,
+			active_pdf->vtable->generate(active_pdf->data, ctx->seed));
 	pdf_val = active_pdf->vtable->value(active_pdf->data, &scattered.dir);
 	if (pdf_val == 0)
 	{
@@ -166,11 +166,11 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
 t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
 		unsigned int *seed)
 {
-	t_color3 pixel_color;
-	double u;
-	double v;
-	int s;
-	t_ray r;
+	t_color3	pixel_color;
+	double		u;
+	double		v;
+	int			s;
+	t_ray		r;
 
 	pixel_color = color_init(0, 0, 0);
 	s = 0;
@@ -187,4 +187,31 @@ t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,
 	return (color_init(ft_clamp(sqrt(pixel_color.r / SAMPLE_PER_PIXEL), 0, 1),
 			ft_clamp(sqrt(pixel_color.g / SAMPLE_PER_PIXEL), 0, 1),
 			ft_clamp(sqrt(pixel_color.b / SAMPLE_PER_PIXEL), 0, 1)));
+}
+
+void	get_gbuffer_info(t_scene *scene, t_camera *cam, int x, int y,
+		t_pixel_data *data)
+{
+	double u;
+	double v;
+	t_ray r;
+	t_hit_record rec;
+
+	u = (double)x / (scene->screen_width - 1);
+	v = (scene->screen_height - 1 - (double)y) / (scene->screen_height - 1);
+	r = camera_get_ray(cam, u, v);
+
+	if (scene->bvh->vtable->hit(scene->bvh->object, &r, (t_double_range){0.001,
+			INFINITY}, &rec))
+	{
+		data->normal = rec.normal;
+		data->position = rec.p;
+		data->depth = rec.t;
+	}
+	else
+	{
+		data->normal = vec_init(0, 0, 0);
+		data->position = vec_init(0, 0, 0);
+		data->depth = -1.0;
+	}
 }

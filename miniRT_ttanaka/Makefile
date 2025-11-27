@@ -24,7 +24,8 @@ SRCS_RAY	=	$(SRC_DIR)/ray/ray.c
 
 SRCS_RAYTRACING =	$(SRC_DIR)/raytracing/raytracing.c \
 					$(SRC_DIR)/raytracing/raytracing_thread.c \
-					$(SRC_DIR)/raytracing/raytracing_utils.c 
+					$(SRC_DIR)/raytracing/raytracing_utils.c \
+					$(SRC_DIR)/raytracing/denoise.c 
 
 SRCS_MAT	=	$(SRC_DIR)/material/dielectric.c \
 				$(SRC_DIR)/material/diffuse_light.c \
@@ -87,6 +88,7 @@ SRCS_LIBFT	=	$(SRC_DIR)/utils/libft/ft_atoi.c \
 				$(SRC_DIR)/utils/libft/ft_calloc.c \
 				$(SRC_DIR)/utils/libft/ft_isdigit.c \
 				$(SRC_DIR)/utils/libft/ft_isspace.c \
+				$(SRC_DIR)/utils/libft/ft_memcpy.c \
 				$(SRC_DIR)/utils/libft/ft_memset.c \
 				$(SRC_DIR)/utils/libft/ft_put_fd.c \
 				$(SRC_DIR)/utils/libft/ft_split.c \

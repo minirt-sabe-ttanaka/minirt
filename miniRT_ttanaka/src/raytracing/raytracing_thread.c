@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:21:08 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:21:09 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 00:51:26 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		take_new_line(t_renderer *r);
 void	*render_thread(void *arg);
+void    transfer_to_image(t_scene *scene, t_pixel_data *buf, int w, int h);
 
 int	take_new_line(t_renderer *r)
 {
@@ -33,10 +34,10 @@ int	take_new_line(t_renderer *r)
 void	*render_thread(void *arg)
 {
 	t_thread_data	*data;
-	t_color3		pixel_color;
 	int				x;
 	int				y;
 	unsigned int	seed;
+	int				idx;
 
 	data = (t_thread_data *)arg;
 	seed = init_seed() + (data->id * 12345);
@@ -48,11 +49,31 @@ void	*render_thread(void *arg)
 		x = -1;
 		while (++x < data->renderer->scene->screen_width)
 		{
-			pixel_color = sampling_ray(data->renderer->scene,
+			idx = y * data->renderer->scene->screen_width + x;
+			data->geo_buffer[idx].color = sampling_ray(data->renderer->scene,
 					data->renderer->cam, x, y, &seed);
-			my_mlx_pixel_put(data->renderer->scene, x, y,
-				tcolor2rgb(pixel_color));
+			get_gbuffer_info(data->renderer->scene, data->renderer->cam, x, y, &data->geo_buffer[idx]);
 		}
 	}
 	return (NULL);
+}
+
+void    transfer_to_image(t_scene *scene, t_pixel_data *buf, int width, int height)
+{
+    int         x;
+    int         y;
+    t_color3    c;
+
+    y = 0;
+    while (y < height)
+    {
+        x = 0;
+        while (x < width)
+        {
+            c = buf[y * width + x].color;
+            my_mlx_pixel_put(scene, x, y, tcolor2rgb(c));
+            x++;
+        }
+        y++;
+    }
 }

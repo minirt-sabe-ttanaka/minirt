@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:38:22 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/23 14:10:38 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 00:53:02 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int							ft_atoi(const char *str);
 size_t						ft_strlen(const char *s);
 int							ft_isspace(char c);
 void						*ft_memset(void *s, int c, size_t n);
+void						*ft_memcpy(void *dest, const void *src, size_t n);
 
 /* ft_strtod.c */
 typedef unsigned __int128	t_u128;
