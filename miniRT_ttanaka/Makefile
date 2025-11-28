@@ -51,6 +51,8 @@ SRCS_HIT	=	$(SRC_DIR)/hittable/hittable_lst.c \
 				$(SRC_DIR)/hittable/shape/plane_pdf.c \
 				$(SRC_DIR)/hittable/shape/sphere.c \
 				$(SRC_DIR)/hittable/shape/sphere_pdf.c \
+				$(SRC_DIR)/hittable/shape/triangle.c \
+				$(SRC_DIR)/hittable/shape/triangle_pdf.c \
 				$(SRC_DIR)/hittable/shape/destroy.c \
 
 SRCS_AABB	=	$(SRC_DIR)/AABB/aabb_utils1.c \

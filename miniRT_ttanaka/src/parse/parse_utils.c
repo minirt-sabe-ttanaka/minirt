@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:22:28 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/25 00:22:29 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 23:20:10 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static bool	parse_line_sections(char **splitted_data, t_scene *scene)
 		return (set_plane(splitted_data, scene));
 	if (ft_strcmp(splitted_data[0], "cy") == 0)
 		return (set_cylinder(splitted_data, scene));
+	if (ft_strcmp(splitted_data[0], "tr") == 0)
+		return (set_triangle(splitted_data, scene));
 	return (false);
 }
 

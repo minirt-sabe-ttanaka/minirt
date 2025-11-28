@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:21:14 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/28 00:45:14 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 23:40:16 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,23 +144,24 @@ t_color3	ray_color(const t_ray *r, t_scene *scene, int depth,
 	t_hit_record		rec;
 	t_scatter_record	srec;
 	t_scatter_ctx		ctx;
-	t_color3			emitted;
+	t_color3			color;
 
 	if (depth <= 0)
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
 	if (!scene->bvh || !scene->bvh->vtable->hit(scene->bvh->object, r,
 			(t_double_range){0.001, INFINITY}, &rec))
 		return (vec_scale(scene->ambient.color, scene->ambient.ratio));
-	emitted = rec.mat.vtable->emitted(rec.mat.object, 0, 0, &rec.p);
+	color = rec.mat.vtable->emitted(rec.mat.object, 0, 0, &rec.p);
 	ctx.r_in = r;
 	ctx.rec = &rec;
 	ctx.seed = seed;
 	if (!rec.mat.vtable->scatter(rec.mat.object, &ctx, &srec))
-		return (emitted);
+		return (color);
 	if (srec.is_specular)
-		return (vec_add(emitted, vec_mult(srec.attenuation,
+		return (vec_add(color, vec_mult(srec.attenuation,
 					ray_color(&srec.specular_ray, scene, depth - 1, seed))));
-	return (vec_add(emitted, calc_diffuse(scene, &srec, &ctx, depth)));
+	color = vec_add(color, calc_direct_light(scene, &rec, srec.attenuation));
+	return (vec_add(color, calc_diffuse(scene, &srec, &ctx, depth)));
 }
 
 t_color3	sampling_ray(t_scene *scene, t_camera *cam, int x, int y,

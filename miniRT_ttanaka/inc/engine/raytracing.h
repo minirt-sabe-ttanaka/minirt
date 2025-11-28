@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:02:16 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/28 00:57:23 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 01:09:11 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <pthread.h>
 # define BAR_WIDTH 50
 # define MAX_DEPTH 10
-# define SAMPLE_PER_PIXEL 100
+# define SAMPLE_PER_PIXEL 50
 # define NUM_THREADS 8
-# define SIGMA_C 0.1
+# define SIGMA_C 0.01
 # define SIGMA_N 128.0
-# define SIGMA_P 1.0
+# define SIGMA_P 0.1
 
 typedef struct s_pixel_data
 {

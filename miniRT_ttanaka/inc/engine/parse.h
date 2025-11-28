@@ -6,7 +6,7 @@
 /*   By: ttanaka <ttanaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 00:02:49 by ttanaka           #+#    #+#             */
-/*   Updated: 2025/11/27 15:13:57 by ttanaka          ###   ########.fr       */
+/*   Updated: 2025/11/28 23:19:55 by ttanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define PARSE_H
 
 # include "../get_next_line/get_next_line.h"
+# include "rt_struct.h"
 # include "scene.h"
 # include "scene/hittable.h"
 # include "scene/hittable/shape.h"
 # include "scene/material.h"
-# include "rt_struct.h"
 # include <fcntl.h>
 # include <stdlib.h>
 
@@ -60,6 +60,7 @@ bool	set_light(char **splitted_data, t_scene *scene);
 bool	set_sphere(char **splitted_data, t_scene *scene);
 bool	set_plane(char **splitted_data, t_scene *scene);
 bool	set_cylinder(char **splitted_data, t_scene *scene);
+bool	set_triangle(char **splitted_data, t_scene *scene);
 
 void	notify_err_line_content(char *s);
 
